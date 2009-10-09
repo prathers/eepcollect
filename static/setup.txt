@@ -1,0 +1,95 @@
+  # Default TS-Configuration for tx_eepcollect
+plugin.tx_eepcollect_pi1 {
+  templateFile = {$plugin.tx_eepcollect_pi1.templateFile}
+}
+
+
+# data = global:HTTP_COOKIE_VARS | tx_eepcollect_pi1
+
+# displays
+plugin.tx_eepcollect_pi1 {
+  # page to get the session-items from (storage pid, not table-field 'pages'->'storage_pid')
+  pid_list = 0
+  pidOfwhatIsPageCollect = 
+  # cookieStorageLifeExpires = default will be 30 days (60*60*24*30)
+  cookieStorageLifeExpires = 2592000 
+  # pidOfExcludedPages = comma separated list
+  pidOfExcludedPages = 
+  minimumitems_toviewcollectionlink = 1
+  minimumitems_toviewclearalllink = 2
+  pagerootline_startatlevel = 0
+  pagerootline_titlelength = 20
+  default_view_mode = view_list_mode # view_prozess_mode
+  display {
+    # listitemwrap optional with optionSplit function
+    # listitem.wrap = |<div style="height: 1px; border-top:1px solid #A16D67;"><!-- space --></div>|*||<div style="height: 1px; border-top:1px solid #A16D67;"><!-- space --></div>|*||
+    currentpageprozessimage_stdWrap.wrap = |
+    currentpageprozesstext_stdWrap.wrap = |
+    currentpageprozesstitle_stdWrap.wrap = |
+    collectioninfo_stdWrap.wrap = |
+    viewcollectionlink_stdWrap.wrap = |
+    whatispagecollect_stdWrap.wrap = |
+    debuginfo_stdWrap.wrap = |
+    error_stdWrap.wrap = |
+    success_stdWrap.wrap = |
+    prozessadd_stdWrap.wrap = |
+    prozessdelete_stdWrap.wrap = |
+    prozessmoveup_stdWrap.wrap = |
+    prozessmovedown_stdWrap.wrap = |
+    collectionlist_pagelinkcurrent_stdWrap.wrap = <strong>|</strong>
+    collectionlist_pagelink_stdWrap.wrap = |
+    collectionlist_pagetitle_stdWrap.wrap = |
+    collectionlist_pagerootline_stdWrap.wrap = |
+    clearall_stdWrap.wrap = |
+    clearallimage_stdWrap.wrap = <span style="vertical-align: middle;">|</span>
+  }
+  images {
+    path = typo3conf/ext/eepcollect/res/
+    prozessadd_img_small = button_plus.gif
+    prozessdelete_img_small = button_minus.gif
+    prozessmoveup_img_small = button_up.gif
+    prozessmoveupdisabled_img_small = button_up_disabled.gif
+    prozessmovedown_img_small = button_down.gif
+    prozessmovedowndisabled_img_small = button_down_disabled.gif
+    prozessadd_img_big = bigbutton_plus.gif
+    prozessdelete_img_big = bigbutton_minus.gif
+    prozessokay_img_big = bigbutton_okay.gif
+  }
+  _LOCAL_LANG.xx {
+  /*
+    enableyourcookie = Aktiver dine Cookies!
+    whatispagecollect = Hvad er 'Dan opgaveset'?
+    error_unknown = et ukendt fejl er opst똢t
+    error_nochanges = Opgaveset ikke opdatered!
+    error_oldsession = Opgaveset ikke opdatered!
+    error_noviewmode = Ingen 'Visningsmodus' for denne plugin v푡gt!
+    success_changes = Opgaveset er opdatered!
+    collectioninfo = %s side(r) sammlet i opgaveset
+    collectioninfo_empty = Ingen sider i opgaveset.
+    addCurrentPageToCollection = tilf퓂 denne side:
+    delCurrentPageToCollection = slet denne side:
+    currentPageAddToCollection = tilf퓂ed:
+    currentPageInCollection = siden er gemt:
+    showFullPageCollection = Vis side-sammling
+    prozess_add = Tilf퓂 side
+    prozess_delete = Slet side
+    prozess_moveup = Sorter side op
+    prozess_movedown = Sorter side ned
+    clearall = Slet alle
+  */
+  }
+} # plugin.tx_eepcollect_pi1
+
+
+# resultlistview with appended pagecontent from col=0 (normal)
+plugin.tx_eepcollect_pi1.display.pagecontent_stdWrap {
+  stdWrap {
+    setContentToCurrent = 1
+    cObject = COA
+    cObject {
+      wrap = |
+      10 < styles.content.get
+      10.select.pidInList.data = current:1
+    } # cObject
+  } # stdWrap
+} # plugin.tx_eepcollect_pi1.display.pagecontent_stdWrap

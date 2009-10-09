@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for plugin &quot;tx_eepcollect_pi1&quot;</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="enableyourcookie">Aktivate your cookies!</label>
+			<label index="whatispagecollect">What is 'Pagecollect'?</label>
+			<label index="error_unknown">Any unknown Error occured.</label>
+			<label index="error_nochanges">Pagecollection wasn't updated!</label>
+			<label index="error_noviewmode">No view-mode defined for this plugin!</label>
+			<label index="error_oldsession">Pagecollection wasn't updated!</label>
+			<label index="success_changes">Pagecollection updated!</label>
+			<label index="collectioninfo">%s page(s) collected</label>
+			<label index="collectioninfo_empty">No pages in collection.</label>
+			<label index="addCurrentPageToCollection">Add this page to collection</label>
+			<label index="delCurrentPageToCollection">Delete this page from collection</label>
+			<label index="currentPageAddToCollection">Page added to collection</label>
+			<label index="currentPageInCollection">Page added to collection</label>
+			<label index="showFullPageCollection">Show pagecollection</label>
+			<label index="prozess_add">Add page</label>
+			<label index="prozess_delete">Delete page</label>
+			<label index="prozess_moveup">Move page up</label>
+			<label index="prozess_movedown">Move page down</label>
+			<label index="clearall">Clear collection</label>
+		</languageKey>
+		<languageKey index="dk" type="array">
+			<label index="enableyourcookie">Aktiver dine Cookies!</label>
+			<label index="whatispagecollect">Hvad er 'Dan opgaveset'?</label>
+			<label index="error_unknown">Et ukendt fejl er opstået.</label>
+			<label index="error_nochanges">Opgaveset ikke opdatered!</label>
+			<label index="error_noviewmode">Ingen 'Visningsmodus' for denne plugin vælgt!</label>
+			<label index="error_oldsession">Opgaveset ikke opdatered!</label>
+			<label index="success_changes">Opgaveset er opdatered!</label>
+			<label index="collectioninfo">%s side(r) i sammlingen.</label>
+			<label index="collectioninfo_empty">Ingen sider i opgaveset</label>
+			<label index="addCurrentPageToCollection">Tilføj denne side til min sammling</label>
+			<label index="delCurrentPageToCollection">Slet denne side fra min sammling</label>
+			<label index="currentPageAddToCollection">Siden er tilføjed til min sammling</label>
+			<label index="currentPageInCollection">siden er gemt i min sammling</label>
+			<label index="showFullPageCollection">Vis min sammling</label>
+			<label index="prozess_add">Tilføj side</label>
+			<label index="prozess_delete">Slet side</label>
+			<label index="prozess_moveup">Sorter side op</label>
+			<label index="prozess_movedown">Sorter side ned</label>
+			<label index="clearall">Slet alle</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="enableyourcookie">Aktiviere Cookies!</label>
+			<label index="whatispagecollect">Was ist Seitensammlung?</label>
+			<label index="error_unknown">Ein unbekannter Fehler trat auf.</label>
+			<label index="error_nochanges">Sammlung wurde nicht aktualisiert!</label>
+			<label index="error_noviewmode">Kein 'Ansichtsmodus' für dieses Plugin gewählt!</label>
+			<label index="error_oldsession">Sammlung wurde nicht aktualisiert!</label>
+			<label index="success_changes">Sammlung wurde aktualisiert!</label>
+			<label index="collectioninfo">%s Seite(n) in der Sammlung</label>
+			<label index="collectioninfo_empty">Keine Seiten in der Sammlung.</label>
+			<label index="addCurrentPageToCollection">Seite zur Sammlung hinzufügen</label>
+			<label index="delCurrentPageToCollection">Seite aus Sammlung entfernen</label>
+			<label index="currentPageAddToCollection">Seite zur Sammlung hinzugefügt</label>
+			<label index="currentPageInCollection">Seite gespeichert:</label>
+			<label index="showFullPageCollection">Zeige Seitensammlung</label>
+			<label index="prozess_add">Seite hinzufügen</label>
+			<label index="prozess_delete">Seite löschen</label>
+			<label index="prozess_moveup">Seite sortieren (vor)</label>
+			<label index="prozess_movedown">Seite sortieren (nach)</label>
+			<label index="clearall">Alle löschen</label>
+		</languageKey>
+	</data>
+</T3locallang>

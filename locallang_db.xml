@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'eepcollect'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tt_content.list_type_pi1">Pagecollector</label>
+			<label index="tx_eepcollect_sessions">Collection</label>
+			<label index="tx_eepcollect_sessions.ses_id">ID/Code</label>
+			<label index="tx_eepcollect_sessions.ses_tstamp">Date/Time</label>
+			<label index="tx_eepcollect_sessions.ses_data">Data</label>
+		</languageKey>
+		<languageKey index="dk" type="array">
+			<label index="tt_content.list_type_pi1">Sidesammling</label>
+			<label index="tx_eepcollect_sessions">Kollektion</label>
+			<label index="tx_eepcollect_sessions.ses_id">ID/Code</label>
+			<label index="tx_eepcollect_sessions.ses_tstamp">Dato/tid</label>
+			<label index="tx_eepcollect_sessions.ses_data">Data</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="tt_content.list_type_pi1">Seitensammlung</label>
+			<label index="tx_eepcollect_sessions">Kollektion</label>
+			<label index="tx_eepcollect_sessions.ses_id">ID/Code</label>
+			<label index="tx_eepcollect_sessions.ses_tstamp">Datum/Zeit</label>
+			<label index="tx_eepcollect_sessions.ses_data">Daten</label>
+		</languageKey>
+	</data>
+</T3locallang>

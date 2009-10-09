@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>language labels for eepcollect BE forms</description>
+		<type>database</type>
+		<csh_table></csh_table>
+		<fileId>EXT:eepcollect/locallang_tca.xml</fileId>
+		<labelContext type="array">
+		</labelContext>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="eepcollect">Pagecollection</label>
+			<label index="eepcollect.pi_flexform.sheet_general">General Settings</label>
+			<label index="eepcollect.pi_flexform.view_mode">View mode:</label>
+			<label index="eepcollect.pi_flexform.view_mode_choose">--Choose!--</label>
+			<label index="eepcollect.pi_flexform.view_mode_prozess">Toolbar</label>
+			<label index="eepcollect.pi_flexform.view_mode_list">Resultlist</label>
+			<label index="eepcollect.pi_flexform.elementTable">Table:</label>
+			<label index="eepcollect.pi_flexform.template_file">Template file:</label>
+			<label index="eepcollect.pi_flexform.pidOfListPageCollect">PageId for list Display:</label>
+			<label index="eepcollect.pi_flexform.pidOfwhatIsPageCollect">PageId for tool-infos:</label>
+			<label index="eepcollect.pi_flexform.pagelinkType">Type of pagelink</label>
+			<label index="eepcollect.pi_flexform.pagelinkType.title">Page-Title</label>
+			<label index="eepcollect.pi_flexform.pagelinkType.rootline">Rootline</label>
+		</languageKey>
+		<languageKey index="dk" type="array">
+			<label index="eepcollect">Sidesammling</label>
+			<label index="eepcollect.pi_flexform.sheet_general">Generelle Indstillinger</label>
+			<label index="eepcollect.pi_flexform.view_mode">Visningsmodus:</label>
+			<label index="eepcollect.pi_flexform.view_mode_choose">--Vælg!--</label>
+			<label index="eepcollect.pi_flexform.view_mode_prozess">Toolbar</label>
+			<label index="eepcollect.pi_flexform.view_mode_list">Liste</label>
+			<label index="eepcollect.pi_flexform.elementTable">Tabel:</label>
+			<label index="eepcollect.pi_flexform.template_file">Skabelon fil:</label>
+			<label index="eepcollect.pi_flexform.pidOfListPageCollect">SideId til visning af listen:</label>
+			<label index="eepcollect.pi_flexform.pidOfwhatIsPageCollect">SideId til visning af toolinfos:</label>
+			<label index="eepcollect.pi_flexform.pagelinkType">Typ af Sidelink</label>
+			<label index="eepcollect.pi_flexform.pagelinkType.title">Side-Titel</label>
+			<label index="eepcollect.pi_flexform.pagelinkType.rootline">Rootline/stig</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="eepcollect">Seitensammlung</label>
+			<label index="eepcollect.pi_flexform.sheet_general">Allgemeine Einstellungen</label>
+			<label index="eepcollect.pi_flexform.view_mode">Ansichtsmodus:</label>
+			<label index="eepcollect.pi_flexform.view_mode_choose">--Wählen!--</label>
+			<label index="eepcollect.pi_flexform.view_mode_prozess">Toolbar</label>
+			<label index="eepcollect.pi_flexform.view_mode_list">Listenansicht</label>
+			<label index="eepcollect.pi_flexform.elementTable">Tabelle:</label>
+			<label index="eepcollect.pi_flexform.template_file">Template Datei:</label>
+			<label index="eepcollect.pi_flexform.pidOfListPageCollect">Seite für die Listenansicht:</label>
+			<label index="eepcollect.pi_flexform.pidOfwhatIsPageCollect">Seite für die Toolinfos:</label>
+			<label index="eepcollect.pi_flexform.pagelinkType">Typ des Seitenlinks</label>
+			<label index="eepcollect.pi_flexform.pagelinkType.title">Seitentitel</label>
+			<label index="eepcollect.pi_flexform.pagelinkType.rootline">Rootline/Pfad</label>
+		</languageKey>
+	</data>
+</T3locallang>

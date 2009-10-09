@@ -1,0 +1,28 @@
+(add new changes on top of this file)
+
+09-07-17 Joerg Kummer  <typo3@enobe.de>
+
+	* BUGFIX simplify replacements for templateCodes
+	  ('str_replace insted' of 'ereg_replace')
+
+09-07-15 Joerg Kummer  <typo3@enobe.de>
+
+	* add view of rootline to pagetitles (with TS-Setup settings)
+	* add use of PAGEID Markers to use in forms
+	* add view_mode settings to TypoScript setup
+
+08-11-17 Joerg Kummer  <typo3@enobe.de>
+
+	* add table for sessions and collection
+	
+08-04-19 Joerg Kummer  <typo3@enobe.de>
+
+	* SecurityBug: strip_tags() funktion added for $_COOKIE
+	* staticFile was 2times at different locations, cleared
+	* added a clearAll funktion
+	* changed some translations
+	* add view-conditions depends on count of collected pages
+	
+08-03-03 Joerg Kummer  <typo3@enobe.de>
+
+	* Initial release

@@ -1,0 +1,5 @@
+  # Constants for tx_eepcollect (Default Setup)
+plugin.tx_eepcollect_pi1 {
+  # cat=plugin.eepcollect/file; type=file[html,htm,tmpl,txt]; label= Template File: This is the template file for displaying eepcollects.
+ templateFile = EXT:eepcollect/template/eepcollect_pi1.tmpl
+}
