@@ -33,14 +33,54 @@ require_once(PATH_tslib.'class.tslib_pibase.php');
 * @subpackage tx_eepcollect
 */
 class tx_eepcollect_pi1 extends tslib_pibase {
+
+		// public vars
 	var $prefixId = 'tx_eepcollect_pi1'; // Same as class name
 	var $scriptRelPath = 'pi1/class.tx_eepcollect_pi1.php'; // Path to this script relative to the extension dir.
 	var $extKey = 'eepcollect'; // The extension key.
+		// Configuring so caching is not expected. This value means that cHash params will be set.
 	var $pi_checkCHash = true;
-	var $sys_language_mode;
-	 
+	var $pi_USER_INT_obj = 0;
+	var $keepPIvarsCache = 1;
+	var $piVars = Array (		// This is the incoming array GET
+		'prozess' => '',		// 
+		'pid' => '',			// 
+		'ctrl' => '',			// 
+	);
+	
+		// private vars
+		// defined values
 	var $hash_length = 6; // The ident-hash is normally 32 characters and should be! But if you are making sites for WAP-devices og other lowbandwidth stuff, you may shorten the length. Never let this value drop below 6. A length of 6 would give you more than 16 mio possibilities.
 	var $sessionTable = 'tx_eepcollect_sessions'; // table containing user-sessions
+
+	/*	// undefined
+	var $conf;
+	var $cookieEnabled;
+	var $cookieStorageLifeExpires;
+	var $currentPageCollectorValueArray;
+	var $currentPageCollectorValueString;
+	var $currPageId;
+	var $currPageTitle;
+	var $debugInfo;
+	var $displayConf;
+	var $feuserID;
+	var $identifyMode;
+	var $imagesConf;
+	var $local_cObj;
+	var $markerArray;
+	var $newProzessControler;
+	var $oldIdListArray;
+	var $oldIdListString;
+	var $oldProzessControler;
+	var $pageNotFoundCount;
+	var $pidList;
+	var $pidOfExcludedPages;
+	var $prozessPageCollector;
+	var $sessionID;
+	var $sys_language_mode;
+	var $template;
+	var $templateCode;
+	*/
 	 
 	/**
 	 * The main method of the PlugIn
@@ -49,17 +89,19 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 	 * @param array  $conf: The PlugIn configuration
 	 * @return The  content that is displayed on the website
 	 */
-	function main($content, $conf) {
-		 
+	 
+	function main($content, $conf) {	
+		
 		$this->conf = $conf;
 		$this->pi_setPiVarDefaults();
 		$this->pi_loadLL();
-			// Configuring so caching is not expected. This value means that no cHash params are ever set. We do this, because it's a USER_INT object!
-        $this->pi_USER_INT_obj=1;
-			// Disable cache for development
-		#$GLOBALS['TSFE']->set_no_cache();
 			// Init variables and get member data (formatted for HTML-output). If there was an error, display and exit.
 		$this->init();
+			// if no user given, but collections depends on users (identify_mode = 2)
+		if ($this->feuserID == false && $this->identifyMode == '2') {
+			#$this->markerArray['COLLECTIONINFO'] = $this->pi_getLL('collectioninfo_nouser');
+			return $this->pi_getLL('collectioninfo_nouser');
+		}
 			// set all markers to fill templatecode
 			// view prozess for current page (depend on excludelist)
 		if (in_array($this->currPageId, $this->pidOfExcludedPages)) {
@@ -114,7 +156,7 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 		$imageDelete = $this->cObj->IMAGE(array('file' => $this->imagesConf['path'].$this->imagesConf['prozessdelete_img_small'], 'alttext' => $this->pi_getLL('prozess_delete')));
 		$imageDelete = $this->local_cObj->stdWrap($imageDelete, $this->displayConf['clearallimage_stdWrap.'] );
 		$linkText_clearAll = $this->local_cObj->stdWrap($this->pi_getLL('clearall'), $this->displayConf['clearall_stdWrap.'] );
-		$this->markerArray['VIEWCLEARALLLINK'] = $this->pi_linkTP_keepPIvars($imageDelete.$linkText_clearAll, array('prozess' => 'clearall', 'ctrl' => $this->oldProzessControler, 'pid' => 'x'));
+		$this->markerArray['VIEWCLEARALLLINK'] = $this->pi_linkTP_keepPIvars($imageDelete.$linkText_clearAll, array('prozess' => 'clearall', 'ctrl' => $this->oldProzessControler, 'pid' => 'x'), $this->keepPIvarsCache);
 		$this->markerArray['VIEWCLEARALLLINK'] = ($collectionCount >= $this->conf['minimumitems_toviewclearalllink'])? $this->markerArray['VIEWCLEARALLLINK'] : '';
 			// view link to 'about this tool/what is page collect' #whatispagecollect
 		$linkText_whatIsPageCollect = $this->local_cObj->stdWrap($this->pi_getLL('whatispagecollect'), $this->displayConf['whatispagecollect_stdWrap.'] );
@@ -141,6 +183,10 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 				$this->templateCode = str_replace (($this->cObj->getSubpart($this->templateCode, '###SUCCESSINFO###')), '<!-- no success -->', $this->templateCode);
 			}
 		}
+			// if any page was not available (hidden, deleted OR access restricted)
+		if ($this->pagesNotFoundCount) {
+			$this->markerArray['COLLECTIONINFO'] .= sprintf($this->local_cObj->stdWrap($this->pi_getLL('collectioninfo_pagesnotfound'), $this->displayConf['collectioninfo_pagesnotfound_stdWrap.'] ), $this->pagesNotFoundCount );
+		}
 		return $this->cObj->substituteMarkerArray($this->templateCode, $this->markerArray, '###|###', 0);
 	}
 	 
@@ -148,25 +194,46 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 	/**
 	 * INITIALISATION
 	 *
-	 * @return [type]  ...
+	 * @return void
 	 */
+	 
 	function init() {
 		global $TCA;
+			// tslib_cObj
+		$this->local_cObj = t3lib_div::makeInstance('tslib_cObj'); // Local cObj.
+			// init FlexForm Values from the Content Element
+		$this->pi_initPIflexForm(); // Init FlexForm configuration for plugin
 			// sys_language_mode defines what to do if the requested translation is not found
 		$this->sys_language_mode = $this->conf['sys_language_mode']?$this->conf['sys_language_mode'] : $GLOBALS['TSFE']->sys_language_mode;
 			// get id of the storage page
-		$this->pidList = $this->conf['pid_list'] ? $this->conf['pid_list'] : 0; // plugin.tx_eepcollect_pi1.pid_list
-			// tslib_cObj
-		$this->local_cObj = t3lib_div::makeInstance('tslib_cObj'); // Local cObj.
-			// Get FlexForm Values from the Content Element
-		$this->pi_initPIflexForm(); // Init FlexForm configuration for plugin
+		#$pidList_flex = $this->cObj->data['pages']; // uses storage folder in CE plugin setting, not written in flexform
+		$pidList_flex = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'page', 'sDEF');
+		$this->pidList = ($pidList_flex)? $pidList_flex : (($this->conf['pid_list'])? $this->conf['pid_list'] : 0); // plugin.tx_eepcollect_pi1.pid_list
+			// get User identify (v.1.0.6) .. should be a separate function
+			// identify mode (by 1 = only cookie, 2 = only feuser, 3 = cookie OR feuser)
+		$identify_mode_flex = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'identify_mode', 'sDEF');
+		$this->identifyMode = ($identify_mode_flex)? $identify_mode_flex : $this->conf['default_identify_mode'];
+		switch($this->identifyMode) {
+			default:
+			case '1':	// only cookie (default)
+				$this->feuserID = false;
+				break;
+			case '2':	// only feuser
+			case '3':	// cookie OR feuser
+				if ($GLOBALS['TSFE']->fe_user->user['uid']) {
+					$this->feuserID = $GLOBALS['TSFE']->fe_user->user['uid'];
+				} else {
+					$this->feuserID = false;
+				}
+				break;
+		}
 			// Read the template from TS-configuration or the flexform
 		$templateflex_file = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'template_file', 'sDEF');
 		$this->template = $this->cObj->fileResource($templateflex_file?'uploads/tx_eepcollect/' . $templateflex_file:$this->conf['templateFile']);
 			// set part of template file as templatecode
 		if ($this->template) {
 			$view_mode_flex = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'view_mode', 'sDEF');
-			$view_mode = ($view_mode_flex)? $view_mode_flex:$this->conf['default_view_mode'];
+			$view_mode = ($view_mode_flex)? $view_mode_flex : $this->conf['default_view_mode'];
 			if ($view_mode == 'view_prozess_mode') {
 					// templatesection for prozess-mode/toolbar
 				$this->templateCode = $this->cObj->getSubpart($this->template, '###COLLECTDISPLAY_TOOLBAR###');
@@ -186,8 +253,14 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 			// get images (time, degree, etc.)
 		$this->imagesConf = $this->conf['images.'];
 			// get list/array of excluded page (which don't should be a part of collection/hide currentpageprozess)
-		$this->pidOfExcludedPages = array();
-		$this->pidOfExcludedPages = explode(',', $this->conf['pidOfExcludedPages'], 1000);
+			// get from flex
+		$pidOfExcludedPages_flex = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'pidOfExcludedPages', 'sDEF');
+		$pidOfExcludedPages_flexArray = ($pidOfExcludedPages_flex) ? explode(',', $pidOfExcludedPages_flex, 1000) : array();
+			// get from TS
+		$pidOfExcludedPages_conf = $this->conf['pidOfExcludedPages'];
+		$pidOfExcludedPages_confArray = (trim($pidOfExcludedPages_conf)) ? explode(',', trim($pidOfExcludedPages_conf), 1000) : array();
+			// merge flex and TS settings
+		$this->pidOfExcludedPages = array_merge($pidOfExcludedPages_flexArray,$pidOfExcludedPages_confArray);
 			// current page infos
 		$this->currPageId = $GLOBALS['TSFE']->id;
 		$this->currPageTitle = $GLOBALS['TSFE']->page['title'];
@@ -211,7 +284,7 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 		}
 			// clear template and marker stuff for 'COOKIEINFOSECTION' if there is no reason to alert
 		if (!$this->markerArray['COOKIEINFO'] && $this->cObj->getSubpart($this->templateCode, '###COOKIEINFOSECTION###')) {
-			$this->templateCode = str_replace (($this->cObj->getSubpart($this->templateCode, '###COOKIEINFOSECTION###')), '<!-- no viewcollectionlink -->', $this->templateCode);
+			$this->templateCode = str_replace (($this->cObj->getSubpart($this->templateCode, '###COOKIEINFOSECTION###')), '<!-- no cookieinfosection -->', $this->templateCode);
 		}
 			// set prozess
 			// we already has got GPvars: $this->piVars; $this->piVars['prozess']; $this->piVars['pid']; $this->piVars['ctrl'];
@@ -223,8 +296,9 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 	/**
 	 * read from cookie
 	 *
-	 * @return [type]  ...
+	 * @return void
 	 */
+	 
 	function get_cookie() {
 		/*
 		 * any action/prozess for collection can only execute after cookie was set
@@ -245,8 +319,8 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 		if ($id) {
 			$this->cookieEnabled = true;
 				// transform idList from cookie to DBase since changes from version 0.0.2 and restore this cookie
-			$sessionIdFromTransorCookie = $this->transformIdListFromCookie($id);
-			$this->sessionID = ($sessionIdFromTransorCookie) ? $sessionIdFromTransorCookie : $id;
+			$sessionIdFromTransformCookie = $this->transformIdListFromCookie($id);
+			$this->sessionID = ($sessionIdFromTransformCookie) ? $sessionIdFromTransformCookie : $id;
 				// read available session-data
 			$userSession = $this->readUserSession();
 				// get collected id's
@@ -288,13 +362,14 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 	/**
 	 * read stored ID's from given session-data
 	 *
-	 * @param [type]  $sessionData: commaseparated list of id's
-	 * @return [type]  ...
+	 * @param String  $sessionData: commaseparated list of id's
+	 * @return void
 	 */
+	 
 	function get_idList($sessionData) {
-		 
+		
 		if ($sessionData) {
-			// get values from session data
+				// get values from session data
 			$this->oldIdListString = $sessionData;
 			$this->oldIdListString = str_replace (',,', ',', trim($this->oldIdListString));
 			$this->oldIdListArray = explode(',', trim($this->oldIdListString), 1000);
@@ -308,10 +383,10 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 	/**
 	 * check prozess of page-collection actions comming during GPvars: $this->piVars
 	 *
-	 * @return [type]  ...
+	 * @return Array	containing session and prozess for further needs
 	 */
+	 
 	function prozessPageCollectorActions() {
-		 
 			// do clear all
 		/*
 		if ($this->piVars['prozess'] == 'clearall') {
@@ -350,10 +425,10 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 	/**
 	 * do prozess of page-collection actions comming during GPvars: $this->piVars
 	 *
-	 * @return [type]  ...
+	 * @return void
 	 */
+	 
 	function doPageCollectorActions() {
-		 
 			// add
 		if ($this->piVars['prozess'] == 'add') {
 			// $this->debugInfo['prozAct'] = 'add';
@@ -419,11 +494,11 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 	/**
 	 * COLLECTION INFOS AND LINKED STUFF
 	 *
-	 * @param [type]  $templateSection: ...
-	 * @return [type]  ...
+	 * @param String  containing template
+	 * @return void
 	 */
+	 
 	function view_pageCollector($templateSection) {
-		 
 			// template and marker stuff
 		$templateCodeSubpartItem = $this->cObj->getSubpart($this->templateCode, '###'.$templateSection.'###');
 		$currentPageCollectorTitleArray = $this->get_currentPageCollectorTitleArray($this->currentPageCollectorValueArray);
@@ -439,28 +514,28 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 			$pageRootline = $v[2];
 				// delete item
 			$imageDelete = $this->cObj->IMAGE(array('file' => $this->imagesConf['path'].$this->imagesConf['prozessdelete_img_small'], 'alttext' => $this->pi_getLL('prozess_delete')));
-			$prozessDeleteLink = $this->pi_linkTP_keepPIvars($imageDelete, array('prozess' => 'del', 'pid' => $pid, 'ctrl' => $this->oldProzessControler));
+			$prozessDeleteLink = $this->pi_linkTP_keepPIvars($imageDelete, array('prozess' => 'del', 'pid' => $pid, 'ctrl' => $this->oldProzessControler), $this->keepPIvarsCache);
 			//$imageAdd = $this->cObj->IMAGE(array('file'=>$this->imagesConf['path'].$this->imagesConf['prozessadd_img_small'],'alttext'=>$this->pi_getLL('prozess_add')));
-			//$prozessAddLink = $this->pi_linkTP_keepPIvars($imageAdd,array('prozess'=>'add','pid'=>$pid,'ctrl'=>$this->oldProzessControler));
+			//$prozessAddLink = $this->pi_linkTP_keepPIvars($imageAdd,array('prozess'=>'add','pid'=>$pid,'ctrl'=>$this->oldProzessControler), $this->keepPIvarsCache);
 				// move (up and down) items, make a differnce in links for first an last item (first item cant move higher up and so on...)
 			if ($i == 0 && $count_currentPageCollectorTitleArray > 1) {
 					// first elemnet
 				$imageMoveUpDisabled = $this->cObj->IMAGE(array('file' => $this->imagesConf['path'].$this->imagesConf['prozessmoveupdisabled_img_small'], 'alttext' => $this->pi_getLL('')));
 				$prozessMoveUpLink = $imageMoveUpDisabled;
 				$imageMoveDown = $this->cObj->IMAGE(array('file' => $this->imagesConf['path'].$this->imagesConf['prozessmovedown_img_small'], 'alttext' => $this->pi_getLL('prozess_movedown')));
-				$prozessMoveDownLink = $this->pi_linkTP_keepPIvars($imageMoveDown, array('prozess' => 'down', 'pid' => $pid, 'ctrl' => $this->oldProzessControler));
+				$prozessMoveDownLink = $this->pi_linkTP_keepPIvars($imageMoveDown, array('prozess' => 'down', 'pid' => $pid, 'ctrl' => $this->oldProzessControler), $this->keepPIvarsCache);
 			} elseif ($i == ($count_currentPageCollectorTitleArray - 1) && $count_currentPageCollectorTitleArray > 1) {
 					// last elemnet
 				$imageMoveUp = $this->cObj->IMAGE(array('file' => $this->imagesConf['path'].$this->imagesConf['prozessmoveup_img_small'], 'alttext' => $this->pi_getLL('prozess_moveup')));
-				$prozessMoveUpLink = $this->pi_linkTP_keepPIvars($imageMoveUp, array('prozess' => 'up', 'pid' => $pid, 'ctrl' => $this->oldProzessControler));
+				$prozessMoveUpLink = $this->pi_linkTP_keepPIvars($imageMoveUp, array('prozess' => 'up', 'pid' => $pid, 'ctrl' => $this->oldProzessControler), $this->keepPIvarsCache);
 				$imageMoveDownDisabled = $this->cObj->IMAGE(array('file' => $this->imagesConf['path'].$this->imagesConf['prozessmovedowndisabled_img_small'], 'alttext' => $this->pi_getLL('')));
 				$prozessMoveDownLink = $imageMoveDownDisabled;
 			} elseif ($count_currentPageCollectorTitleArray > 1) {
 					// all other elements between first and last
 				$imageMoveUp = $this->cObj->IMAGE(array('file' => $this->imagesConf['path'].$this->imagesConf['prozessmoveup_img_small'], 'alttext' => $this->pi_getLL('prozess_moveup')));
-				$prozessMoveUpLink = $this->pi_linkTP_keepPIvars($imageMoveUp, array('prozess' => 'up', 'pid' => $pid, 'ctrl' => $this->oldProzessControler));
+				$prozessMoveUpLink = $this->pi_linkTP_keepPIvars($imageMoveUp, array('prozess' => 'up', 'pid' => $pid, 'ctrl' => $this->oldProzessControler), $this->keepPIvarsCache);
 				$imageMoveDown = $this->cObj->IMAGE(array('file' => $this->imagesConf['path'].$this->imagesConf['prozessmovedown_img_small'], 'alttext' => $this->pi_getLL('prozess_movedown')));
-				$prozessMoveDownLink = $this->pi_linkTP_keepPIvars($imageMoveDown, array('prozess' => 'down', 'pid' => $pid, 'ctrl' => $this->oldProzessControler));
+				$prozessMoveDownLink = $this->pi_linkTP_keepPIvars($imageMoveDown, array('prozess' => 'down', 'pid' => $pid, 'ctrl' => $this->oldProzessControler), $this->keepPIvarsCache);
 			} // else do not show any moving buttons
 				//$this->markerArraySub['PROZESSADD'] = $this->local_cObj->stdWrap($prozessAddLink, $this->displayConf['prozessadd_stdWrap.']);
 			$this->markerArraySub['PROZESSDELETE'] = $this->local_cObj->stdWrap($prozessDeleteLink, $this->displayConf['prozessdelete_stdWrap.']);
@@ -471,10 +546,11 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 			$this->markerArraySub['PAGETITLE'] = $this->local_cObj->stdWrap($pageTitle, $this->displayConf['collectionlist_pagetitle_stdWrap.']);
 			$this->markerArraySub['PAGEROOTLINE'] = $this->local_cObj->stdWrap($pageRootline, $this->displayConf['collectionlist_pagerootline_stdWrap.']);
 				// view title/rootline with pagelink
-			$pagelinkType = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'pagelinkType', 'sDEF');
-			if ($pagelinkType == 0) {
+			$pagelinkType_flex = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'pagelinkType', 'sDEF');
+			$pagelinkType = ($pagelinkType_flex)? $pagelinkType_flex : (($this->conf['pagelinkType'])? $this->conf['pagelinkType'] : '1');
+			if ($pagelinkType == '1') {
 				$pageLink = $this->pi_linkTP($pageTitle, array('id' => $pid));
-			} elseif ($pagelinkType == '1') {
+			} elseif ($pagelinkType == '2') {
 				$pageLink = $this->pi_linkTP($pageRootline, array('id' => $pid));
 			}
 			
@@ -484,7 +560,14 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 				$this->markerArraySub['PAGELINK'] = $this->local_cObj->stdWrap($pageLink, $this->displayConf['collectionlist_pagelink_stdWrap.']);
 			}
 				// view/append pagecontent
-			$this->markerArraySub['PAGECONTENT'] = $this->local_cObj->stdWrap($pid, $this->displayConf['pagecontent_stdWrap.']);
+			/* Problem
+			 * here we found a bug, when using rgtabs on the same site: each PAGECONTENT does render included JS multiple during use of tslib_fe->INTincScript()
+			 * by the way: there is no reason to get all pagecontent, if no pagencontent should be rendered, defined by template
+			 */
+				// check if PAGECONTENT should be rendered, and add to markerArray
+			if (strpos($templateCodeSubpartItem, '###PAGECONTENT###')) {
+				$this->markerArraySub['PAGECONTENT'] = $this->local_cObj->stdWrap($pid, $this->displayConf['pagecontent_stdWrap.']);
+			}
 			$i++;
 			$listItem = $this->cObj->substituteMarkerArray($templateCodeSubpartItem, $this->markerArraySub, '###|###', 0);
 				// Implementation of the "optionSplit" feature (like eg. for MENU objects)
@@ -500,10 +583,11 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 	/**
 	 * view current PageProzess ('add' or 'exists')
 	 *
-	 * @return [type]  ...
+	 * @return Array	containing HTML snippets
 	 */
+	 
 	function view_currentPageProzess() {
-		 
+		
 			// set title
 		$currentPageProzess['title'] = $this->currPageTitle;
 		 
@@ -513,14 +597,14 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 			// when adding to any existing collection
 		if ($this->currentPageCollectorValueArray && !in_array($this->currPageId, $this->currentPageCollectorValueArray)) {
 			$image = $this->cObj->IMAGE(array('file' => $this->imagesConf['path'].$this->imagesConf['prozessadd_img_big'], 'alttext' => $this->pi_getLL('prozess_add')));
-			$currentPageProzess['image'] = $this->pi_linkTP_keepPIvars($image, array('prozess' => 'add', 'pid' => $GLOBALS['TSFE']->id, 'ctrl' => $this->oldProzessControler));
-			$currentPageProzess['text'] = $this->pi_linkTP_keepPIvars($this->pi_getLL('addCurrentPageToCollection'),array('prozess'=>'add','pid'=>$GLOBALS['TSFE']->id,'ctrl'=>$this->oldProzessControler));
+			$currentPageProzess['image'] = $this->pi_linkTP_keepPIvars($image, array('prozess' => 'add', 'pid' => $GLOBALS['TSFE']->id, 'ctrl' => $this->oldProzessControler), $this->keepPIvarsCache);
+			$currentPageProzess['text'] = $this->pi_linkTP_keepPIvars($this->pi_getLL('addCurrentPageToCollection'),array('prozess'=>'add','pid'=>$GLOBALS['TSFE']->id,'ctrl'=>$this->oldProzessControler), $this->keepPIvarsCache);
 
 			// or when adding totaly new (collection/cookie is empty); change ProzessControler
 		} elseif (!$this->currentPageCollectorValueArray) {
 			$image = $this->cObj->IMAGE(array('file' => $this->imagesConf['path'].$this->imagesConf['prozessadd_img_big'], 'alttext' => $this->pi_getLL('prozess_add')));
-			$currentPageProzess['image'] = $this->pi_linkTP_keepPIvars($image, array('prozess' => 'add', 'pid' => $GLOBALS['TSFE']->id, 'ctrl' => $this->newProzessControler));
-			$currentPageProzess['text'] = $this->pi_linkTP_keepPIvars($this->pi_getLL('addCurrentPageToCollection'),array('prozess'=>'add','pid'=>$GLOBALS['TSFE']->id,'ctrl'=>$this->newProzessControler));
+			$currentPageProzess['image'] = $this->pi_linkTP_keepPIvars($image, array('prozess' => 'add', 'pid' => $GLOBALS['TSFE']->id, 'ctrl' => $this->newProzessControler), $this->keepPIvarsCache);
+			$currentPageProzess['text'] = $this->pi_linkTP_keepPIvars($this->pi_getLL('addCurrentPageToCollection'),array('prozess'=>'add','pid'=>$GLOBALS['TSFE']->id,'ctrl'=>$this->newProzessControler), $this->keepPIvarsCache);
 
 			// if already exists in collection
 			// and if it was current proceeded
@@ -531,12 +615,10 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 			// if it wasnt current proceeded (delete is possible)
 		} else {
 			$image = $this->cObj->IMAGE(array('file' => $this->imagesConf['path'].$this->imagesConf['prozessdelete_img_big'], 'alttext' => $this->pi_getLL('prozess_delete')));
-			$currentPageProzess['image'] = $this->pi_linkTP_keepPIvars($image, array('prozess' => 'del', 'pid' => $GLOBALS['TSFE']->id, 'ctrl' => $this->oldProzessControler));
-			$currentPageProzess['text'] = $this->pi_linkTP_keepPIvars($this->pi_getLL('delCurrentPageToCollection'),array('prozess'=>'del','pid'=>$GLOBALS['TSFE']->id,'ctrl'=>$this->oldProzessControler));
+			$currentPageProzess['image'] = $this->pi_linkTP_keepPIvars($image, array('prozess' => 'del', 'pid' => $GLOBALS['TSFE']->id, 'ctrl' => $this->oldProzessControler), $this->keepPIvarsCache);
+			$currentPageProzess['text'] = $this->pi_linkTP_keepPIvars($this->pi_getLL('delCurrentPageToCollection'),array('prozess'=>'del','pid'=>$GLOBALS['TSFE']->id,'ctrl'=>$this->oldProzessControler), $this->keepPIvarsCache);
 		}
-		 
-		 
-		 
+
 		return $currentPageProzess;
 	}
 	 
@@ -544,22 +626,29 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 	/**
 	 * get page titles as array
 	 *
-	 * @param [type]  $currentPageCollectorValueArray: ...
-	 * @return [type]  ...
+	 * @param	Array	containing page id's
+	 * @return	Array containing page titles
 	 */
+	 
 	function get_currentPageCollectorTitleArray($currentPageCollectorValueArray) {
-
+		
 		if (is_array($currentPageCollectorValueArray)) {
 			while (list($key, $uid) = each($currentPageCollectorValueArray)) {
 				$page = $GLOBALS['TSFE']->sys_page->getPage($uid);
-				$rootlineArray = $GLOBALS['TSFE']->sys_page->getRootLine($uid);
-					// slice NUM levels from root
-				ksort($rootlineArray);
-				$slicedArray = array_slice($rootlineArray,$this->conf['pagerootline_startatlevel']);
-				krsort($slicedArray);
-				$rootlinePath = $GLOBALS['TSFE']->sys_page->getPathFromRootline($slicedArray,$this->conf['pagerootline_titlelength']);
-				$currentPageCollectorTitleArray[$key] = array($page['uid'], $page['title'], $rootlinePath);
+					// check, if page is readable (hidden, delted OR access restricted)
+				if ($page) {
+					$rootlineArray = $GLOBALS['TSFE']->sys_page->getRootLine($uid);
+						// slice NUM levels from root
+					ksort($rootlineArray);
+					$slicedArray = array_slice($rootlineArray,$this->conf['pagerootline_startatlevel']);
+					krsort($slicedArray);
+					$rootlinePath = $GLOBALS['TSFE']->sys_page->getPathFromRootline($slicedArray,$this->conf['pagerootline_titlelength']);
+					$currentPageCollectorTitleArray[$key] = array($page['uid'], $page['title'], $rootlinePath);
+				} else {
+					$pagesNotFoundCount ++;
+				}
 			}
+			$this->pagesNotFoundCount = $pagesNotFoundCount;
 		}
 			// sort and return
 		ksort ($currentPageCollectorTitleArray);
@@ -570,10 +659,12 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 	/**
 	 * debugInfos for currentPageCollectorValueArray
 	 *
-	 * @param [type]  $info: ...
-	 * @return [type]  ...
+	 * @param	Array	$info: ...
+	 * @return	Array	
 	 */
+	 
 	function debugCurrentPageCollectorValueArray($info) {
+		
 		$this->currentPageCollectorValueArray = mysql_real_escape_string($this->currentPageCollectorValueArray);
 		if (is_array($this->currentPageCollectorValueArray)) {
 			$query = 'SELECT title,uid FROM pages WHERE uid IN ('.implode(',', $this->currentPageCollectorValueArray).') '.$this->cObj->enableFields('pages');
@@ -610,28 +701,49 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 	 *
 	 * @param string  $sessionID: md5 string
 	 * @param string  $idListString: commaseparated list of ID's
-	 * @return [type]  ...
+	 * @return void
 	 */
-	function createUserSession ($sessionID,$idListString='') {
-		$insertFields = array(
-			'pid' => $this->pidList,
-			'ses_id' => $sessionID,
-			'ses_tstamp' => $this->newProzessControler,
-			'ses_data' => $idListString,
+	 
+	function createUserSession($sessionID,$idListString='') {
+		
+		if ($sessionID OR $this->feuserID) {
+				// inserts
+			$insertFields = array(
+				'pid' => $this->pidList,
+				'ses_tstamp' => $this->newProzessControler,
+				'ses_data' => $idListString,
 			);
-			// create session entry
-		$GLOBALS['TYPO3_DB']->exec_INSERTquery($this->sessionTable, $insertFields);
-			// insert execution should be checked
-		#$sql_insert_id = $GLOBALS['TYPO3_DB']->sql_insert_id();
+				// inserts for identify mode (by 1 = only cookie, 2 = only feuser, 3 = cookie OR feuser)
+			switch($this->identifyMode) {
+				default:
+				case '1':	// only cookie (default)
+					$insertFields['ses_id'] = $sessionID;
+					break;
+				case '2':	// only feuser
+					$insertFields['feuser_id'] = $this->feuserID;
+					break;
+				case '3':	// cookie OR feuser
+					$insertFields['ses_id'] = $sessionID;
+					$insertFields['feuser_id'] = $this->feuserID;
+					break;
+			}
+				// create session entry
+			$GLOBALS['TYPO3_DB']->exec_INSERTquery($this->sessionTable, $insertFields);
+				// insert execution should be checked
+			#$sql_insert_id = $GLOBALS['TYPO3_DB']->sql_insert_id();
+		} else {
+		
+		}		
 	}
+	 
 	 
 	/**
 	 * Update a user session record.
 	 *
-	 * @return [type]  ...
+	 * @return void
 	 */
-	function updateUserSession () {
-		 
+	 
+	function updateUserSession() {
 			//  get id list as string
 		if ($this->currentPageCollectorValueArray) {
 			$this->currentPageCollectorValueString = implode(',', $this->currentPageCollectorValueArray);
@@ -641,12 +753,30 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 			// update cookie (expire date)
 		SetCookie($this->prefixId, $this->sessionID, $this->cookieStorageLifeExpires, '/');
 			// write changes to DBase
-		$where = 'ses_id = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr($this->sessionID, $this->sessionTable);
+			// where
+		$where = '1=1';
+			// where identify mode (by 1 = only cookie, 2 = only feuser, 3 = cookie OR feuser)
+		$where_sessionID = ' ses_id = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr($this->sessionID, $this->sessionTable);
+		$where_feuserID = ' feuser_id = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr($this->feuserID, $this->sessionTable);;
+		switch($this->identifyMode) {
+			default:
+			case '1':	// only cookie (default)
+				$where .= ' AND' . $where_sessionID;
+				break;
+			case '2':	// only feuser
+				$where .= ' AND' . $where_feuserID;
+				break;
+			case '3':	// cookie OR feuser
+				$where .= ' AND (' . $where_sessionID . ' OR ' . $where_feuserID . ')';
+				break;
+		}
+			// pid
 		$where .= ' AND pid = ' . $this->pidList;
+			// updatefields
 		$updateFields = array(
 			'ses_tstamp' => $GLOBALS['EXEC_TIME'],
 			'ses_data' => $this->currentPageCollectorValueString,
-			);
+		);
 			// update session entry
 		$GLOBALS['TYPO3_DB']->exec_UPDATEquery($this->sessionTable, $where, $updateFields);
 			// the update execution should be checked
@@ -661,11 +791,31 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 	/**
 	 * Read from a user session record.
 	 *
-	 * @return [type]  ...
+	 * @return Array	containing table row
 	 */
-	function readUserSession () {
+	 
+	function readUserSession() {
 			// check DB-table and read session from db
-		$where = ' ses_id="'.$this->sessionID.'" AND pid = ' . $this->pidList;
+			// where
+		$where = '1=1';
+			// where identify mode (by 1 = only cookie, 2 = only feuser, 3 = cookie OR feuser)
+		$where_sessionID = ' ses_id = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr($this->sessionID, $this->sessionTable);
+		$where_feuserID = ' feuser_id = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr($this->feuserID, $this->sessionTable);
+		switch($this->identifyMode) {
+			default:
+			case '1':	// only cookie (default)
+				$where .= ' AND' . $where_sessionID;
+				break;
+			case '2':	// only feuser
+				$where .= ' AND' . $where_feuserID;
+				break;
+			case '3':	// cookie OR feuser
+				$where .= ' AND (' . $where_sessionID . ' OR ' . $where_feuserID . ')';
+				break;
+		}
+			// pid
+		$where .= ' AND pid = ' . $this->pidList;
+			// exec
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', $this->sessionTable, $where);
 		$row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
 		return $row;
@@ -680,9 +830,11 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 	 * in this case, any update from version 0.0.2 should be done, here the stored ID's will be transmitted to DBase
 	 * the only way to check out of it, is to check commaseparated listing by any existing delimiter of ','
 	 *
-	 * @return [type]  ...
+	 * @return Int	session id
 	 */
-	function transformIdListFromCookie ($IdList) {
+	 
+	function transformIdListFromCookie($IdList) {
+		
 		$this->hash_length = t3lib_div::intInRange($this->hash_length, 6, 32);
 		$sessionID = substr(md5(uniqid('').getmypid()), 0, $this->hash_length);
 		if (strstr($IdList, ',')) {

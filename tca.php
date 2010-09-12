@@ -4,7 +4,7 @@ if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 $TCA["tx_eepcollect_sessions"] = array (
 	"ctrl" => $TCA["tx_eepcollect_sessions"]["ctrl"],
 	"interface" => array (
-		"showRecordFieldList" => "ses_id,ses_tstamp,ses_data"
+		"showRecordFieldList" => "ses_id,feuser_id,ses_tstamp,ses_data"
 	),
 	"feInterface" => $TCA["tx_eepcollect_sessions"]["feInterface"],
 	"columns" => array (
@@ -14,6 +14,21 @@ $TCA["tx_eepcollect_sessions"] = array (
 			"config" => Array (
 				"type" => "input",	
 				"size" => "30",
+			)
+		),
+		"feuser_id" => Array (		
+			"exclude" => 1,		
+			"label" => "LLL:EXT:eepcollect/locallang_db.xml:tx_eepcollect_sessions.feuser_id",		
+			"config" => Array (
+				"type" => "select",
+				"items" => Array (
+                    Array("LLL:EXT:eepcollect/locallang_db.xml:tx_eepcollect_sessions.feuser_id.0", "0"),
+                ),
+				"foreign_table" => "fe_users",
+				"size" => 1,
+				"minitems" => 0,
+				"maxitems" => 1,
+				"default" => 0,
 			)
 		),
 		"ses_tstamp" => Array (		
@@ -37,7 +52,7 @@ $TCA["tx_eepcollect_sessions"] = array (
 		),
 	),
 	"types" => array (
-		"0" => array("showitem" => "ses_id;;;;1-1-1, ses_tstamp, ses_data")
+		"0" => array("showitem" => "ses_id;;;;1-1-1, feuser_id, ses_tstamp, ses_data")
 	),
 	"palettes" => array (
 		"1" => array("showitem" => "")

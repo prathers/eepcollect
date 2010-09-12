@@ -13,46 +13,61 @@
 			<label index="eepcollect">Pagecollection</label>
 			<label index="eepcollect.pi_flexform.sheet_general">General Settings</label>
 			<label index="eepcollect.pi_flexform.view_mode">View mode:</label>
-			<label index="eepcollect.pi_flexform.view_mode_choose">--Choose!--</label>
+			<label index="eepcollect.pi_flexform.choose">--Choose!--</label>
 			<label index="eepcollect.pi_flexform.view_mode_prozess">Toolbar</label>
 			<label index="eepcollect.pi_flexform.view_mode_list">Resultlist</label>
-			<label index="eepcollect.pi_flexform.elementTable">Table:</label>
+			<label index="eepcollect.pi_flexform.identify_mode">User identication:</label>
+			<label index="eepcollect.pi_flexform.identify_mode.1">Only by cookie (default)</label>
+			<label index="eepcollect.pi_flexform.identify_mode.2">Only by FE-User</label>
+			<label index="eepcollect.pi_flexform.identify_mode.3">By FE-User or Cookie</label>
 			<label index="eepcollect.pi_flexform.template_file">Template file:</label>
 			<label index="eepcollect.pi_flexform.pidOfListPageCollect">PageId for list Display:</label>
 			<label index="eepcollect.pi_flexform.pidOfwhatIsPageCollect">PageId for tool-infos:</label>
 			<label index="eepcollect.pi_flexform.pagelinkType">Type of pagelink</label>
-			<label index="eepcollect.pi_flexform.pagelinkType.title">Page-Title</label>
+			<label index="eepcollect.pi_flexform.pagelinkType.title">Pagetitle</label>
 			<label index="eepcollect.pi_flexform.pagelinkType.rootline">Rootline</label>
+			<label index="eepcollect.pi_flexform.storagepage">Startingpoint:</label>
+			<label index="eepcollect.pi_flexform.pidOfExcludedPages">Exlude pages from collection:</label>
 		</languageKey>
 		<languageKey index="dk" type="array">
 			<label index="eepcollect">Sidesammling</label>
 			<label index="eepcollect.pi_flexform.sheet_general">Generelle Indstillinger</label>
 			<label index="eepcollect.pi_flexform.view_mode">Visningsmodus:</label>
-			<label index="eepcollect.pi_flexform.view_mode_choose">--Vælg!--</label>
+			<label index="eepcollect.pi_flexform.choose">--Vælg!--</label>
 			<label index="eepcollect.pi_flexform.view_mode_prozess">Toolbar</label>
 			<label index="eepcollect.pi_flexform.view_mode_list">Liste</label>
-			<label index="eepcollect.pi_flexform.elementTable">Tabel:</label>
+			<label index="eepcollect.pi_flexform.identify_mode">Bruger identificering:</label>
+			<label index="eepcollect.pi_flexform.identify_mode.1">Kun cookie (standard)</label>
+			<label index="eepcollect.pi_flexform.identify_mode.2">Kun FE-User</label>
+			<label index="eepcollect.pi_flexform.identify_mode.3">FE-User eller Cookie</label>
 			<label index="eepcollect.pi_flexform.template_file">Skabelon fil:</label>
 			<label index="eepcollect.pi_flexform.pidOfListPageCollect">SideId til visning af listen:</label>
 			<label index="eepcollect.pi_flexform.pidOfwhatIsPageCollect">SideId til visning af toolinfos:</label>
 			<label index="eepcollect.pi_flexform.pagelinkType">Typ af Sidelink</label>
 			<label index="eepcollect.pi_flexform.pagelinkType.title">Side-Titel</label>
 			<label index="eepcollect.pi_flexform.pagelinkType.rootline">Rootline/stig</label>
+			<label index="eepcollect.pi_flexform.storagepage">Udgangspunkt:</label>
+			<label index="eepcollect.pi_flexform.pidOfExcludedPages">Eksluder disse sider fra sammlingen:</label>
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="eepcollect">Seitensammlung</label>
 			<label index="eepcollect.pi_flexform.sheet_general">Allgemeine Einstellungen</label>
 			<label index="eepcollect.pi_flexform.view_mode">Ansichtsmodus:</label>
-			<label index="eepcollect.pi_flexform.view_mode_choose">--Wählen!--</label>
+			<label index="eepcollect.pi_flexform.choose">--Wählen!--</label>
 			<label index="eepcollect.pi_flexform.view_mode_prozess">Toolbar</label>
 			<label index="eepcollect.pi_flexform.view_mode_list">Listenansicht</label>
-			<label index="eepcollect.pi_flexform.elementTable">Tabelle:</label>
+			<label index="eepcollect.pi_flexform.identify_mode">Benutzer Identifizierung:</label>
+			<label index="eepcollect.pi_flexform.identify_mode.1">Nur Cookie (standard)</label>
+			<label index="eepcollect.pi_flexform.identify_mode.2">Nur FE-Benutzer</label>
+			<label index="eepcollect.pi_flexform.identify_mode.3">FE-User oder Cookie</label>
 			<label index="eepcollect.pi_flexform.template_file">Template Datei:</label>
 			<label index="eepcollect.pi_flexform.pidOfListPageCollect">Seite für die Listenansicht:</label>
 			<label index="eepcollect.pi_flexform.pidOfwhatIsPageCollect">Seite für die Toolinfos:</label>
 			<label index="eepcollect.pi_flexform.pagelinkType">Typ des Seitenlinks</label>
 			<label index="eepcollect.pi_flexform.pagelinkType.title">Seitentitel</label>
 			<label index="eepcollect.pi_flexform.pagelinkType.rootline">Rootline/Pfad</label>
+			<label index="eepcollect.pi_flexform.storagepage">Ausgangspunkt:</label>
+			<label index="eepcollect.pi_flexform.pidOfExcludedPages">Diese Seiten aus der Sammlung ausschließen:</label>
 		</languageKey>
 	</data>
 </T3locallang>
