@@ -549,10 +549,11 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 			$pagelinkType_flex = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'pagelinkType', 'sDEF');
 			$pagelinkType = ($pagelinkType_flex)? $pagelinkType_flex : (($this->conf['pagelinkType'])? $this->conf['pagelinkType'] : '1');
 			if ($pagelinkType == '1') {
-				$pageLink = $this->pi_linkTP($pageTitle, array('id' => $pid));
+				$pageLinkStr = $pageTitle;
 			} elseif ($pagelinkType == '2') {
-				$pageLink = $this->pi_linkTP($pageRootline, array('id' => $pid));
+				$pageLinkStr = $pageRootline;
 			}
+			$pageLink = $this->pi_linkToPage($pageLinkStr,$pid,$target,$urlParameters);
 			
 			if ($pid == $GLOBALS['TSFE']->id) {
 				$this->markerArraySub['PAGELINK'] = $this->local_cObj->stdWrap($pageLink, $this->displayConf['collectionlist_pagelinkcurrent_stdWrap.']);
