@@ -1,3 +1,6 @@
+10-09-20 Joerg Kummer  <typo3[by]enobe.de>
+	* bugfix: pageLink with simulateStaticDocuments
+
 10-07-30 Joerg Kummer  <typo3[by]enobe.de>
 
 	* add frontend user identification
