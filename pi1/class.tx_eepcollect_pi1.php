@@ -560,6 +560,8 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 			} else {
 				$this->markerArraySub['PAGELINK'] = $this->local_cObj->stdWrap($pageLink, $this->displayConf['collectionlist_pagelink_stdWrap.']);
 			}
+				// URL of the marked pages (fx: to send it using powermail). Thanks to Falko Trojahn #9893
+			$this->markerArraySub['PAGEURL'] = $this->local_cObj->stdWrap($this->pi_getPageLink($pid), $this->displayConf['collectionlist_pageurl_stdWrap.']);
 				// view/append pagecontent
 			/* Problem
 			 * here we found a bug, when using rgtabs on the same site: each PAGECONTENT does render included JS multiple during use of tslib_fe->INTincScript()

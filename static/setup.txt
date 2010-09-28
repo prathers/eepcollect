@@ -63,6 +63,7 @@ plugin.tx_eepcollect_pi1 {
     prozessmovedown_stdWrap.wrap = |
     collectionlist_pagelinkcurrent_stdWrap.wrap = <strong>|</strong>
     collectionlist_pagelink_stdWrap.wrap = |
+    collectionlist_pageurl_stdWrap.wrap = |
     collectionlist_pagetitle_stdWrap.wrap = |
     collectionlist_pagerootline_stdWrap.wrap = |
     clearall_stdWrap.wrap = |
