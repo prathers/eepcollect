@@ -1,3 +1,6 @@
+10-09-24 Joerg Kummer  <typo3[by]enobe.de>
+	* add marker for pageURL, feature#9893 THX to Falko Trojahn
+
 10-09-20 Joerg Kummer  <typo3[by]enobe.de>
 	* bugfix: pageLink with simulateStaticDocuments
 
