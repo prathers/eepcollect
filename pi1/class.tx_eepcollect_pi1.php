@@ -657,8 +657,8 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 		ksort ($currentPageCollectorTitleArray);
 		return $currentPageCollectorTitleArray;
 	}
-	 
-	 
+	
+	
 	/**
 	 * debugInfos for currentPageCollectorValueArray
 	 *
@@ -687,8 +687,8 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 			return 'no \'curPCol\'';
 		}
 	}
-	 
-	 
+	
+	
 	/*************************
 	 *
 	 * Database User Sessions
@@ -756,30 +756,42 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 			// update cookie (expire date)
 		SetCookie($this->prefixId, $this->sessionID, $this->cookieStorageLifeExpires, '/');
 			// write changes to DBase
-			// where
-		$where = '1=1';
-			// where identify mode (by 1 = only cookie, 2 = only feuser, 3 = cookie OR feuser)
-		$where_sessionID = ' ses_id = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr($this->sessionID, $this->sessionTable);
-		$where_feuserID = ' feuser_id = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr($this->feuserID, $this->sessionTable);;
-		switch($this->identifyMode) {
-			default:
-			case '1':	// only cookie (default)
-				$where .= ' AND' . $where_sessionID;
-				break;
-			case '2':	// only feuser
-				$where .= ' AND' . $where_feuserID;
-				break;
-			case '3':	// cookie OR feuser
-				$where .= ' AND (' . $where_sessionID . ' OR ' . $where_feuserID . ')';
-				break;
-		}
-			// pid
-		$where .= ' AND pid = ' . $this->pidList;
 			// updatefields
 		$updateFields = array(
 			'ses_tstamp' => $GLOBALS['EXEC_TIME'],
 			'ses_data' => $this->currentPageCollectorValueString,
 		);
+			// where
+		$where = '1=1';
+			// where identify mode (by 1 = only cookie, 2 = only feuser, 3 = cookie OR feuser)
+		$where_sessionID = $this->sessionID ? ' ses_id = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr($this->sessionID, $this->sessionTable) : '';
+		$where_feuserID = $this->feuserID ? ' feuser_id = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr($this->feuserID, $this->sessionTable) : '';
+		switch($this->identifyMode) {
+			default:
+			case '1':	// only cookie (default)
+				$where .= $where_sessionID ? ' AND' . $where_sessionID : '';
+				break;
+			case '2':	// only feuser
+				$where .= $where_feuserID ? ' AND' . $where_feuserID : '';
+				break;
+			case '3':	// cookie OR feuser
+				if ($where_sessionID || $where_feuserID) {
+					if ($where_sessionID && $where_feuserID) {
+						$where .= ' AND (' . $where_sessionID . ' OR ' . $where_feuserID . ')';
+					} else {
+						$where .= $where_sessionID ? ' AND' . $where_sessionID : '';
+						$where .= $where_feuserID ? ' AND' . $where_feuserID : '';
+					}
+				}
+					// insert feuserID, if not exist
+				$check_feuserID = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid,feuser_id', $this->sessionTable, 'ses_id ='.$GLOBALS['TYPO3_DB']->fullQuoteStr($this->sessionID, $this->sessionTable), $groupBy, $orderBy, 1);
+				if ($check_feuserID[0]['uid'] && !$check_feuserID[0]['feuser_id']) {
+					$updateFields['feuser_id'] = $this->feuserID;
+				}
+				break;
+		}
+			// pid
+		$where .= ' AND pid = ' . $this->pidList;
 			// update session entry
 		$GLOBALS['TYPO3_DB']->exec_UPDATEquery($this->sessionTable, $where, $updateFields);
 			// the update execution should be checked
@@ -802,18 +814,25 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 			// where
 		$where = '1=1';
 			// where identify mode (by 1 = only cookie, 2 = only feuser, 3 = cookie OR feuser)
-		$where_sessionID = ' ses_id = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr($this->sessionID, $this->sessionTable);
-		$where_feuserID = ' feuser_id = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr($this->feuserID, $this->sessionTable);
+		$where_sessionID = $this->sessionID ? ' ses_id = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr($this->sessionID, $this->sessionTable) : '';
+		$where_feuserID = $this->feuserID ? ' feuser_id = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr($this->feuserID, $this->sessionTable) : '';
 		switch($this->identifyMode) {
 			default:
 			case '1':	// only cookie (default)
-				$where .= ' AND' . $where_sessionID;
+				$where .= $where_sessionID ? ' AND' . $where_sessionID : '';
 				break;
 			case '2':	// only feuser
-				$where .= ' AND' . $where_feuserID;
+				$where .= $where_feuserID ? ' AND' . $where_feuserID : '';
 				break;
 			case '3':	// cookie OR feuser
-				$where .= ' AND (' . $where_sessionID . ' OR ' . $where_feuserID . ')';
+				if ($where_sessionID || $where_feuserID) {
+					if ($where_sessionID && $where_feuserID) {
+						$where .= ' AND (' . $where_sessionID . ' OR ' . $where_feuserID . ')';
+					} else {
+						$where .= $where_sessionID ? ' AND' . $where_sessionID : '';
+						$where .= $where_feuserID ? ' AND' . $where_feuserID : '';
+					}
+				}
 				break;
 		}
 			// pid
