@@ -1,3 +1,5 @@
+10-11-16 Joerg Kummer  <typo3[by]enobe.de>
+	* Bugfix10723, DB-Update depend on  identifyMode
 10-09-24 Joerg Kummer  <typo3[by]enobe.de>
 	* add marker for pageURL, feature#9893 THX to Falko Trojahn
 
