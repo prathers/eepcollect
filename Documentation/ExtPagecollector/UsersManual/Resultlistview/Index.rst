@@ -1,0 +1,33 @@
+﻿
+
+.. ==================================================
+.. FOR YOUR INFORMATION
+.. --------------------------------------------------
+.. -*- coding: utf-8 -*- with BOM.
+
+.. ==================================================
+.. DEFINE SOME TEXTROLES
+.. --------------------------------------------------
+.. role::   underline
+.. role::   typoscript(code)
+.. role::   ts(typoscript)
+   :class:  typoscript
+.. role::   php(code)
+
+
+Resultlistview
+^^^^^^^^^^^^^^
+
+If you choose viewmode 'resultview' for the plugin it will show a list
+of the pages from the collection. The plugintemplate substitute an
+'uid' out to the marker ###PAGECONTENT####. This uid is used to
+generate the content from theses pages by the following TypoScript
+Setup code:
+
+\# resultlistview with appended pagecontent from col=0 (normal)
+
+plugin.tx\_eepcollect\_pi1.display.pagecontent\_stdWrap.stdWrap
+{setContentToCurrent = 1cObject = COAcObject {wrap = \|10 <
+styles.content.get10.select.pidInList.data = current:1} # cObject} #
+stdWrap
+
