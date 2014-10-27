@@ -18,19 +18,17 @@
 What does it do?
 ^^^^^^^^^^^^^^^^
 
-Pagecollector is a pure Frontendtool that give visitors the
-possibility to choose some predefined TYPO3 pages for adding them to
-their own favorit-list like products in a basket from a webshop.
-Visitors can always obtain his favorite content, back in time. Basicly
-the idea was to provide exercises for scholars where teachers can
-collect and printout a favour selection of given themes. At least, it
-is possible to get one page, where the content of all preselected
-pages will be listed in predefined sorting. A printable version with
-cover sheet including structure of content and a pagebreak between all
-collected different pages and theirs content is the result of these
+Pagecollector is a Frontend tool that gives visitors the
+possibility to choose among predefined TYPO3 pages and add them to
+their own favorite list of pages. The list works a bit like ab webshop basket.
+Visitors can always maintain his favorite pages, back in time. Basicly
+the idea is to provide pages and exercises for students, where teachers can
+collect and print a selection of given themes. When collecting is finihed, the teacher go to the basket pages, where the content of preselected
+pages will be listed in predefined order. A printable version with
+cover sheet, including structure of content and a pagebreak between all
+collected pages and their content, is the result of this
 extension.
 
-You could use it to let create visitors theirs own menues, by using by
+You could use it to let visitors create their own menus, by
 using HMENU(myMenu.special.list.data = global:HTTP\_COOKIE\_VARS \|
 tx\_eepcollect\_pi1).
-

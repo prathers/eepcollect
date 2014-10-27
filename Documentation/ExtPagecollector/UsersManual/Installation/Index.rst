@@ -18,18 +18,15 @@
 Installation
 ^^^^^^^^^^^^
 
-Install the extension with the extension manager. Include the static
+Install the extension with the Extension Manager. Include the static
 template 'PageCollector Default (eepcollect)' into your StaticTemplate
 record (see the selectorbox 'Include static (from extensions):' and
-choose these extension). So you will have a range of predefined
-TypoScript-Setup variables for this extension which you can change and
-customise as you like.
+select the extension). You'll have a range of predefined
+TypoScript setup variables for the extension, which you can change and
+customise, as you like.
 
 You can also use Constant Editor (PAGECOLLECTOR) to manage some of
-these typoscript configurations.
+the TypoScript configurations.
 
-To see the plugin in Frontend, you must define a contentelement with
-the type of 'insert plugin' where you select this plugin to insert.
-Then you will get a view plugin options. You just have to choose the
-viewmode. Start with 'toolbar' to get a fast impression.
+To see the plugin in Frontend, you need to define a Plugin content element. To get a quick impression, try the 'toolbar' in the Plugin setting. Save and hit the View page.
 

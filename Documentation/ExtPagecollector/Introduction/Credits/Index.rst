@@ -20,8 +20,8 @@ Credits
 
 Thanks to:
 
-community of TYPO3,vikingeskibsmuseet for this extension,Christian
-Schmidt, APV GmbH, for his challenge,Kantonales Gymnasium Menzingen,
-for extended challenge,and all, who tryed to help this tool to be a
+The TYPO3 community, Viking Ship Museum in Roskilde for this extension, Christian
+Schmidt, APV GmbH, for his challenges, Kantonales Gymnasium Menzingen,
+for extended challenge, and all, who tried to help getting this tool to be a
 better one.
 

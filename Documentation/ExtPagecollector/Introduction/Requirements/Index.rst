@@ -18,5 +18,5 @@
 Requirements
 ^^^^^^^^^^^^
 
-TYPO3 4.0, css\_styled\_content
+TYPO3 4.5, css\_styled\_content
 
