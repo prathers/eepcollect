@@ -18,10 +18,8 @@
 Configuration
 -------------
 
-All Flexform values can also be configured using the TypoScript.
-Flexform values has higher prior.Layout can be configured by Template
-and CSS. There isn't declared a '\_CSS\_DEFAULT\_STYLE' for this
-plugin.
+All Flexform values can also be configured using the TypoScript. Flexform values have higher priority. 
+Layout can be configured by Template and CSS. There is no declared '_CSS_DEFAULT_STYLE' for this plugin.
 
 
 .. toctree::

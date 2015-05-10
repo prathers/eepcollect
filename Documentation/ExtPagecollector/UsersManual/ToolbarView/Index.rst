@@ -18,28 +18,11 @@
 Toolbar View
 ^^^^^^^^^^^^
 
-A toolbar to add different pages to a virtual collection should be
-available on differnet pages. Therfor it would be a good idea to set
-this plugin with the toolbar into a prefered place on each page, which
-should be possible to collect. Choose a dynamicly way to do this (like
-page.10.subparts.pagecollectortoolbar).
+A toolbar to add different pages to a virtual collection, should be available on different pages. Therefore, it would be a good idea to setup the plugin with the toolbar, into a preferred place on each page that you want to collect. Choose a dynamic way to do this (like page.10.subparts.pagecollectortoolbar).
 
-Create or use a page in your pagetree (it can be a sysfolder) where
-you just store some contentelements, you will use different ways and
-places. Create a contentelement with the type of 'insert plugin' where
-you select this plugin to insert. Choose 'toolbar' as viewmode. Save.
+Create or use a page in your pagetree (it can be a sysfolder), where you just store some contentelements, which you will use in different ways and places. Create a contentelement with the type of 'insert plugin', where you select the plugin to insert. Choose 'toolbar' as viewmode. Save.
 
-Then you can set this toolbar on each pache you wish by these
-TypoScript-Setup settings:
+Then you can setup this toolbar on each page you wish by using these TypoScript-Setup settings:
+page.10.subparts.pagecollectortoolbar = CONTENT  page.10.subparts.pagecollectortoolbar {    table = tt_content    select {      pidInList = #the pid of the page, where     uidInList = # uid of the contentelemnt which holds the plugin with viewmode 'toolbar'   }  }
 
-page.10.subparts.pagecollectortoolbar =
-CONTENTpage.10.subparts.pagecollectortoolbar {table =
-tt\_contentselect {pidInList = #the pid of the page, whereuidInList =
-# uid of the contentelemnt which holds the plugin with viewmode
-'toolbar'}}
-
-You should have a subpart called: 'pagecollectortoolbar' or find any
-other subpart to place this element. The toolbar will work on each
-page, and will show the options to add, delete or move the current
-viewed page in the collection.
-
+You should have a subpart called: 'pagecollectortoolbar' or find any other subpart to put in this element. The toolbar will work on each page, and will show the options to add, delete or move the current viewed page in the collection.

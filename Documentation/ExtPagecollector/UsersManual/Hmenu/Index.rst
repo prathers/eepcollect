@@ -18,10 +18,7 @@
 HMENU
 ^^^^^
 
-There is a marker called ###COLLECTIONSMARTLIST### that contains a
-komma separated list of page-uids, which are currently selected in the
-collection. Whith these uid's you cann create your own HMENU objects
-like:
+There is a marker called ###COLLECTIONSMARTLIST### that contains a comma separated list of page-uids, which are currently selected in the collection. With these uids you can create your own HMENU objects like:
 
 myMenu = HMENUmyMenu {special = listspecial.value = #comes from
 'collectionsmartlist'1 = TMENU# ...}

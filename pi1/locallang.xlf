@@ -4,13 +4,13 @@
 		<header/>
 		<body>
 			<trans-unit id="enableyourcookie" xml:space="preserve">
-				<source>Aktivate your cookies!</source>
+				<source>Activate your cookies!</source>
 			</trans-unit>
 			<trans-unit id="whatispagecollect" xml:space="preserve">
 				<source>What is 'Pagecollect'?</source>
 			</trans-unit>
 			<trans-unit id="error_unknown" xml:space="preserve">
-				<source>Any unknown Error occured.</source>
+				<source>An unknown Error occured.</source>
 			</trans-unit>
 			<trans-unit id="error_nochanges" xml:space="preserve">
 				<source>Pagecollection wasn't updated!</source>
@@ -49,7 +49,7 @@
 				<source>Page added to collection</source>
 			</trans-unit>
 			<trans-unit id="showFullPageCollection" xml:space="preserve">
-				<source>Show pagecollection</source>
+				<source>Show page collection</source>
 			</trans-unit>
 			<trans-unit id="prozess_add" xml:space="preserve">
 				<source>Add page</source>

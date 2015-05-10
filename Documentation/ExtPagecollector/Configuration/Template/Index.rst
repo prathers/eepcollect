@@ -18,8 +18,7 @@
 Template
 ^^^^^^^^
 
-There are defined styles already inside the templatefile. It might be
-more usefull to describe some classes for CSS and use them instead.
+There are already defined styles inside the template file. It might be more useful to describe some classes for CSS and use them instead.
 
 
 Markers for use in template
@@ -48,8 +47,7 @@ Markers for use in template
          COLLECTDISPLAY\_TOOLBAR
    
    Description
-         contains all markers to list and handle (toolbarfeatures like
-         'add/delete/move') pages in collection
+         Contain all markers to list and handle (toolbar features like 'add/delete/move') pages in collection
 
 
 .. container:: table-row
@@ -58,8 +56,7 @@ Markers for use in template
          COLLECTDISPLAY\_RESULTLIST
    
    Description
-         contains all markers just to list the given collection without
-         toolbarfeatures
+         Contains all markers just to list the given collection without toolbar features
 
 
 .. container:: table-row
@@ -74,7 +71,7 @@ Markers for use in template
          CURRENTPAGEPROZESSSECTION
    
    Description
-         section for viewing current available option for current viewed paged
+         Section for viewing current available option for current viewed paged
 
 
 .. container:: table-row
@@ -86,7 +83,7 @@ Markers for use in template
          CURRENTPAGEPROZESSIMAGE
    
    c
-         a button with the currentavailable option for the current viewed page
+         A button with the current available option for the current viewed page
 
 
 .. container:: table-row
@@ -98,7 +95,7 @@ Markers for use in template
          CURRENTPAGEPROZESSTEXT
    
    c
-         a textinfo, about the current available option for the current viewed
+         A textinfo, about the current available option for the current viewed
          page
 
 
@@ -111,7 +108,7 @@ Markers for use in template
          CURRENTPAGEPROZESSTITLE
    
    c
-         thetitle of the current viewed page
+         The title of the current viewed page
 
 
 .. container:: table-row
@@ -120,7 +117,7 @@ Markers for use in template
          COOKIEINFOSECTION
    
    Description
-         if cookie are enabled it will be shown here
+         If cookie is enabled it will be shown here
 
 
 .. container:: table-row
@@ -132,7 +129,7 @@ Markers for use in template
          COOKIEINFO
    
    c
-         shows a textinfo, that cookie couldnt be set/read
+         Shows a textinfo, that cookie couldn't be set/read
 
 
 .. container:: table-row
@@ -141,7 +138,7 @@ Markers for use in template
          VIEWCOLLECTIONINFOSECTION
    
    Description
-         shows info about the summary or emptyness of the collection
+         Shows info about the summary or emptiness of the collection
 
 
 .. container:: table-row
@@ -153,7 +150,7 @@ Markers for use in template
          COLLECTIONINFO
    
    c
-         will show the summary of the collection in a short textinfo
+         Will show the summary of the collection in a short textinfo
 
 
 .. container:: table-row
@@ -162,7 +159,7 @@ Markers for use in template
          VIEWCOLLECTIONTOOLBARLISTSECTION
    
    Description
-         section to show a list of pages in collection
+         Section to show a list of pages in collection
 
 
 .. container:: table-row
@@ -171,7 +168,7 @@ Markers for use in template
          VIEWCOLLECTIONLISTSECTION
    
    Description
-         section to show a second list of pages in collection
+         Section to show a second list of pages in collection
 
 
 .. container:: table-row
@@ -183,7 +180,7 @@ Markers for use in template
          PROZESSDELETE
    
    c
-         button to handle the collection (delete)
+         Button to handle the collection (delete)
 
 
 .. container:: table-row
@@ -195,7 +192,7 @@ Markers for use in template
          PROZESSMOVEUP
    
    c
-         button to handle the collection (moveup)
+         Button to handle the collection (moveup)
 
 
 .. container:: table-row
@@ -207,7 +204,7 @@ Markers for use in template
          PROZESSMOVEDOWN
    
    c
-         button to handle the collection (movedown)
+         Button to handle the collection (movedown)
 
 
 .. container:: table-row
@@ -219,7 +216,7 @@ Markers for use in template
          PAGELINK
    
    c
-         shows the pagetile wrapped in a link
+         Shows the pagetitle wrapped in a link
 
 
 .. container:: table-row
@@ -231,7 +228,7 @@ Markers for use in template
          PAGETITLE
    
    c
-         shows only the pagetitle
+         Shows only the pagetitle
 
 
 .. container:: table-row
@@ -243,7 +240,7 @@ Markers for use in template
          PAGECONTENT
    
    c
-         a placeholder to wrap it with some content defined via TypoScript
+         A placeholder to wrap it with some content defined via TypoScript
          (plugin.tx\_eepcollect\_pi1.display.pagecontent\_stdWrap)
 
 
@@ -253,7 +250,7 @@ Markers for use in template
          VIEWCOLLECTIONLINKSECTION
    
    Description
-         section to show some further links for collectionhandling
+         Section to show some further links for collection handling
 
 
 .. container:: table-row
@@ -265,7 +262,7 @@ Markers for use in template
          VIEWCOLLECTIONLINK
    
    c
-         shows a link to the resultlistpage, as choosen in the plugin
+         Shows a link to the resultlistpage, as choosen in the plugin
 
 
 .. container:: table-row
@@ -280,7 +277,7 @@ Markers for use in template
          COLLECTIONSMARTLIST
    
    Description
-         can be used to build an HMENU with TSSetup: stdWrap.setCurrent =1
+         Can be used to build an HMENU with TSSetup: stdWrap.setCurrent =1
 
 
 .. container:: table-row
@@ -289,7 +286,7 @@ Markers for use in template
          WHATISPAGECOLLECT
    
    Description
-         link to any page which contains information about this tool
+         Link to any page which contain information about this tool
 
 
 .. ###### END~OF~TABLE ######

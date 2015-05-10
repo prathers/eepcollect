@@ -48,9 +48,7 @@ General settings
          File
    
    Description
-         Fileresource to the HTML-Template. You can also define a templatefile
-         with higher priority inside the flexform of the contentelement for
-         this plugin.
+         File resource to the HTML-Template. You can also define a template file with higher priority inside the flexform of the contentelement for this plugin.
    
    Default
          EXT:eepcollect/template/eepcollect\_pi1.tmpl
@@ -65,7 +63,7 @@ General settings
          Int
    
    Description
-         StoragePage where to save collections in
+         StoragePage where collections are saved
    
    Default
          0
@@ -80,8 +78,7 @@ General settings
          Int
    
    Description
-         Time in seconds how long the cookie with collection of pages should be
-         alife for the client, after creating any collection
+         Time in seconds how long the cookie with collection of pages should be alive for the client, after creating any collection
    
    Default
          60\*60\*24\*30 = 2592000
@@ -96,8 +93,7 @@ General settings
          Int
    
    Description
-         Page where you will view a list of all collected pages. Uses template
-         marker ###VIEWCOLLECTIONLINK### and builds a link to it
+         Page where you can view a list of all collected pages. Uses template marker ###VIEWCOLLECTIONLINK### and builds a link to it
    
    Default
          empty
@@ -112,9 +108,7 @@ General settings
          Page uid
    
    Description
-         Page where you can view more information about how to use and so on.
-         Creates a titled link (\_LOCAL\_LANG.default.whatispagecollect) in the
-         template by ###WHATISPAGECOLLECT###
+         Page where you can view more information about how to use and so on. Creates a titled link (_LOCAL_LANG.default.whatispagecollect) in the template by ###WHATISPAGECOLLECT###
    
    Default
          empty
@@ -129,10 +123,7 @@ General settings
          List of page uid's
    
    Description
-         Commaseparated list of pages, where the selecttoolbarbuttons should
-         not be available. Pages, which schouldn't be a part of pagecollection,
-         but the collectionoverview should be viewed. Will be merged with
-         Flexform settings.
+         Comma separated list of pages, where the selecttoolbarbuttons should not be available. Pages, which shouldn't be a part of pagecollection, but the collectionoverview can be viewed. Will be merged with Flexform settings.
    
    Default
          empty
@@ -166,15 +157,14 @@ General settings
          Int
    
    Description
-         Sets the kind of how to identify the user, using cookies or feuser
-         login. Use:
-         
+         Sets how to identify the user, using cookies or feuser login. Use:
+
          '1' … identify by cookie only
-         
+
          '2' … identify by feuser only
-         
-         '3' … identify by both cookie or feuser
-         
+
+         '3' … identify by both cookie and feuser
+       
          (3 … in a special situation it builds two collections, which can't be
          merged automaticly)
    
@@ -191,7 +181,7 @@ General settings
          Int
    
    Description
-         Minimum items in collection, to view link to the hole collection
+         Minimum items in collection, to view link to the whole collection
    
    Default
          1
@@ -240,8 +230,7 @@ General settings
          Int
    
    Description
-         If you view rootline for each collected page, you can change
-         startlevel
+         If you view rootline for each collected page, you can change the startlevel
    
    Default
          0
@@ -256,8 +245,7 @@ General settings
          Int
    
    Description
-         If you view rootline for each collected page, you can change the
-         string-length for the hole rootline
+         If you view rootline for each collected page, you can change the string-length for the whole rootline
    
    Default
          20
@@ -266,8 +254,8 @@ General settings
 .. container:: table-row
 
    Property
-         **Settings for display** (its possible to manipulate a range of
-         templateitems by the following stdWraps)
+         **Settings for display** (it's possible to manipulate a range of
+         template items by the following stdWraps)
 
 
 .. container:: table-row
@@ -553,7 +541,7 @@ General settings
          string/path
    
    Description
-         Path to your imagefolder
+         Path to your image folder
    
    Default
          typo3conf/ext/eepcollect/res/
@@ -583,7 +571,7 @@ General settings
          imgfile
    
    Description
-         Small button for 'delete
+         Small button for 'delete'
    
    Default
          button\_minus.gif
@@ -613,7 +601,7 @@ General settings
          imgfile
    
    Description
-         Small disabled button, cant moveup, first item
+         Small disabled button, can't move up, first item
    
    Default
          button\_up\_disabled.gif
@@ -643,7 +631,7 @@ General settings
          imgfile
    
    Description
-         Small disabled button, cant movedown, last item
+         Small disabled button, can't move down, last item
    
    Default
          button\_down\_disabled.gif
@@ -688,7 +676,7 @@ General settings
          imgfile
    
    Description
-         Big button if pages was successful included
+         Big button if pages were successfully included
    
    Default
          bigbutton\_okay.gif
@@ -709,10 +697,10 @@ General settings
          string
    
    Description
-         textinfo, that cookie couldnt be set/read ###COOKIEINFO###
+         textinfo, that cookie couldn't be set/read ###COOKIEINFO###
    
    Default
-         Aktivate your cookies!
+         Activate your cookies!
 
 
 .. container:: table-row
@@ -724,7 +712,7 @@ General settings
          string
    
    Description
-         linktext to any page which contains information about this tool
+         Link text to any page which contains information about this tool
          ###WHATISPAGECOLLECT###
    
    Default
@@ -755,7 +743,7 @@ General settings
          string
    
    Description
-         Textinfo, that no changes appears to the collection.
+         Text info that no change appears in the collection.
    
    Default
          Pagecollection wasn't updated!
@@ -770,9 +758,7 @@ General settings
          string
    
    Description
-         Textinfo, that no changes appears to the collection. This will
-         happens, if the visitor browse back/forward and should refresh the
-         site, where any collectionoption was choosen.
+         Text info that no change appears in the collection. This will happen if the visitor browses back/forward and refreshes the page, and any collectionoption was choosen.
    
    Default
          Pagecollection wasn't updated!
@@ -787,8 +773,7 @@ General settings
          string
    
    Description
-         If the admin didnt choose any viewmode for the plugin, this message
-         appears.
+         If the admin didn’t choose any viewmode for the plugin, this message appears.
    
    Default
          No view-mode defined for this plugin!
@@ -803,7 +788,7 @@ General settings
          string
    
    Description
-         Textinfo, that collection was succesfully updated.
+         Text info, that collection was successfully updated.
    
    Default
          Pagecollection updated!
@@ -848,7 +833,7 @@ General settings
          string
    
    Description
-         Linkttext to add current viewed page to the collection.
+         Link text to add current viewed page to the collection.
    
    Default
          Add this page:
@@ -863,7 +848,7 @@ General settings
          string
    
    Description
-         Linktext to delte the page from collection.
+         Link text to delete the page from collection.
    
    Default
          Delete this page:
@@ -908,7 +893,7 @@ General settings
          string
    
    Description
-         Linktext for collectionresultlist ###VIEWCOLLECTIONLINK###
+         Link text for collectionresultlist ###VIEWCOLLECTIONLINK###
    
    Default
          Show pagecollection
