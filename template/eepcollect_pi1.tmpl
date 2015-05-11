@@ -15,7 +15,6 @@ These are substituted throughout the whole template.
 <em>Mainsections for choosen view mode:</em>
 COLLECTDISPLAY_TOOLBAR - contains all markers to list and handle (toolbarfeatures like 'add/delete/move') pages in collection
 COLLECTDISPLAY_RESULTLIST - contains all markers just to list the given collection without toolbarfeatures
-COLLECTDISPLAY_DEBUGGING - contains a range of further markers for debuggingmode (not longer testet)
 
 <em>Subsections:</em>
 	CURRENTPAGEPROZESSSECTION - section for viewing current available option for current viewed paged
@@ -210,129 +209,6 @@ COLLECTDISPLAY_DEBUGGING - contains a range of further markers for debuggingmode
 	<!-- ###VIEWCOLLECTIONLISTSECTION### end -->
 	
 <!-- ###COLLECTDISPLAY_RESULTLIST### end -->
-
-<!-- ###################################################################### -->
-
-<h2>DEBUGGING</h2>
-
-<br /><br /><br /><br /><hr />
-<br />
-<h3>Pagecollector Debug-Display Example</h3>
-<em>This is the template for debugging view (more infos viewable).</em>
-<br />
-<br />
-<br />
-<br />
-
-
-
-<!-- ###COLLECTDISPLAY_DEBUGGING### begin -->
-	
-	<!-- ###ERRORINFO### begin -->
-		<div style="background: #B2341F; padding: 5px; color: #FFFFFF" >
-			###ERROR###
-		</div>
-		<div style="clear: both; width:170px; height: 3px;">&nbsp;</div>
-	<!-- ###ERRORINFO### end -->
-	<!-- ###SUCCESSINFO### begin -->
-		<div style="background: #5D908E; padding: 5px; color: #FFFFFF" >
-			###SUCCESS###
-		</div>
-		<div style="clear: both; width:170px; height: 3px;">&nbsp;</div>
-	<!-- ###SUCCESSINFO### end -->
-	
-	<!-- ###CURRENTPAGEPROZESSSECTION### begin -->
-		<div style="padding: 5px;" >
-		<div style="width:180px;">
-			<div style="float: left; width:60px;">
-				###CURRENTPAGEPROZESSIMAGE###
-			</div>
-			<div style="float:left; width:120px;">
-				<em>###CURRENTPAGEPROZESSTEXT###</em>
-				<br />
-				<strong>'###CURRENTPAGEPROZESSTITLE###'</strong>
-			</div>
-		</div>
-		<div style="clear: both; width:170px; height: 3px;">&nbsp;</div>
-		</div>
-	<!-- ###CURRENTPAGEPROZESSSECTION### end -->
-	
-	<!-- ###COOKIEINFOSECTION### begin -->
-		<div style="background: #B2341F; padding: 5px; color: #FFFFFF" >
-			###COOKIEINFO###
-		</div>
-		<div style="clear: both; width:170px; height: 3px;">&nbsp;</div>
-	<!-- ###COOKIEINFOSECTION### end -->
-	
-	<!-- ###VIEWCOLLECTIONINFOSECTION### begin -->
-	<div style=" padding: 5px 0 ;" >
-	###COLLECTIONINFO###
-	</div>
-	<!-- ###VIEWCOLLECTIONINFOSECTION### end -->
-	
-	<!-- can be used to build an HMENU by stdWrap.setCurrent =1 end 
-	<div style=" padding: 5px 0 ;" >
-		###COLLECTIONSMARTLIST###
-	</div>
-	-->
-	
-	<!-- ###VIEWCOLLECTIONTOOLBARLISTSECTION### begin -->
-		
-		<div style="padding: 5px;">
-			<div style="width:500px;">
-				<div style="float: left; width:60px;">
-					###PROZESSDELETE###
-					###PROZESSMOVEUP###
-					###PROZESSMOVEDOWN###
-				</div>
-				<div style="float:left; width:440px;">
-					###PAGELINK###
-				</div>
-				<div style="clear: both; width:510px; padding: 1px 0;"><!-- clear floats --></div>
-			</div>
-		</div>
-	<!-- ###VIEWCOLLECTIONTOOLBARLISTSECTION### end -->
-	
-	<!-- ###VIEWCLEARALLLINKSECTION### begin -->
-		<div style=" padding: 5px 0 ;" >
-			###VIEWCLEARALLLINK###
-		</div>
-	<!-- ###VIEWCLEARALLLINKSECTION### end -->
-	
-	<!-- ###VIEWCOLLECTIONLISTSECTION### begin -->
-		<div style="background: #EAE0DF; padding: 5px;" >
-			<div style="width:170px;">
-				<div style="float: left; width:60px;">
-					###PROZESSDELETE###
-					###PROZESSMOVEUP###
-					###PROZESSMOVEDOWN###
-				</div>
-				<div style="float:left; width:110px;">
-					###PAGELINK###
-				</div>
-				<div style="clear: both; width:180px; padding: 1px 0;"><!-- clear floats --></div>
-			</div>
-		</div>
-		
-		<div style="padding: 5px; page-break-before: always; page-break-after: always; xpage-break-inside: always;">
-			<div style="width:515px; margin:0 -10px;">
-				<h1>###PAGETITLE###</h1>
-				###PAGECONTENT###
-			</div>
-		</div>
-	<!-- ###VIEWCOLLECTIONLISTSECTION### end -->
-	
-	<!-- ###VIEWCOLLECTIONLINKSECTION### begin -->
-		<div style=" padding: 5px 0 ;" >
-			###VIEWCOLLECTIONLINK###
-		</div>
-	<!-- ###VIEWCOLLECTIONLINKSECTION### end -->
-	
-	<div style=" padding: 5px 0 ;" >
-	###WHATISPAGECOLLECT###
-	</div>
-	
-<!-- ###COLLECTDISPLAY_DEBUGGING### end -->
 
 <!-- ###################################################################### -->
 

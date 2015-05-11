@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2008 Joerg Kummer <typo@enobe.de>
+*  (c) 2014 Joerg Kummer <typo et enobe dot de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -22,7 +22,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
  
-require_once(PATH_tslib.'class.tslib_pibase.php');
+#require_once(PATH_tslib.'class.tslib_pibase.php');
 #require_once(PATH_t3lib.'class.t3lib_page.php');
  
 /**
@@ -52,6 +52,7 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 		// defined values
 	var $hash_length = 6; // The ident-hash is normally 32 characters and should be! But if you are making sites for WAP-devices og other lowbandwidth stuff, you may shorten the length. Never let this value drop below 6. A length of 6 would give you more than 16 mio possibilities.
 	var $sessionTable = 'tx_eepcollect_sessions'; // table containing user-sessions
+	var $typo3Version;	// calculate typo version
 
 	/*	// undefined
 	var $conf;
@@ -61,7 +62,6 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 	var $currentPageCollectorValueString;
 	var $currPageId;
 	var $currPageTitle;
-	var $debugInfo;
 	var $displayConf;
 	var $feuserID;
 	var $identifyMode;
@@ -94,6 +94,7 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 		
 		$this->conf = $conf;
 		$this->pi_setPiVarDefaults();
+		$this->typo3Version = class_exists('t3lib_utility_VersionNumber') ? t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version) : t3lib_div::int_from_ver(TYPO3_version);
 		$this->pi_loadLL();
 			// Init variables and get member data (formatted for HTML-output). If there was an error, display and exit.
 		$this->init();
@@ -163,8 +164,6 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 		$templateflex_pidOfwhatIsPageCollect = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'pidOfwhatIsPageCollect', 'sDEF');
 		$pidOfwhatIsPageCollect = $templateflex_pidOfwhatIsPageCollect ? $templateflex_pidOfwhatIsPageCollect : $this->conf['pidOfwhatIsPageCollect'];
 		$this->markerArray['WHATISPAGECOLLECT'] = $this->pi_linkToPage($linkText_whatIsPageCollect, $pidOfwhatIsPageCollect, '', array()); // pi_linkToPage($str,$id,$target='',$urlParameters=array())
-			// view debugging infos
-		$this->markerArray['DEBUGINFO'] = $this->local_cObj->stdWrap(t3lib_div::view_array($this->debugInfo), $this->displayConf['debuginfo_stdWrap.']);
 			// view errors or not
 		if ($this->cObj->getSubpart($this->templateCode, '###ERRORINFO###')) {
 			if ($this->markerArray['ERROR']) {
@@ -271,8 +270,6 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 			// get cookie
 		$this->get_cookie(); // sets the '$this->oldIdListArray' and '$this->oldProzessControler'
 		$this->currentPageCollectorValueArray = ($this->oldIdListArray) ? $this->oldIdListArray : array();
-		// $this->debugInfo['curPCol'][] = array($this->currentPageCollectorValueArray,'*'=>'get_cookie()');
-		// $this->debugInfo['dCurPCol'][] = $this->debugCurrentPageCollectorValueArray('get_cookie()');
 			// if cookies are disabled, stop prozessing here and view alert
 		if (!$this->cookieEnabled) {
 				// cookies are disabled (alert to enable cookies)
@@ -289,7 +286,6 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 			// set prozess
 			// we already has got GPvars: $this->piVars; $this->piVars['prozess']; $this->piVars['pid']; $this->piVars['ctrl'];
 		$this->prozessPageCollector = $this->prozessPageCollectorActions(); // sets the '$this->oldIdListArray' and '$this->oldProzessControler'
-		// $this->debugInfo['prozChk'] = $this->prozessPageCollector;
 	}
 	 
 	 
@@ -342,7 +338,11 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 			$this->oldIdListArray = false;
 			$this->oldProzessControler = false;
 				// set totaly new session
-			$this->hash_length = t3lib_div::intInRange($this->hash_length, 6, 32);
+			if ($this->typo3Version < 4006000) {
+				$this->hash_length = t3lib_div::intInRange($this->hash_length, 6, 32);
+			} else {
+				$this->hash_length = t3lib_utility_Math::forceIntegerInRange($this->hash_length, 6, 32);
+			}
 			$this->sessionID = substr(md5(uniqid('').getmypid()), 0, $this->hash_length);
 				// if cookies are not disabled
 			if (!$this->piVars['prozess']) {
@@ -431,11 +431,9 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 	function doPageCollectorActions() {
 			// add
 		if ($this->piVars['prozess'] == 'add') {
-			// $this->debugInfo['prozAct'] = 'add';
 			$this->currentPageCollectorValueArray[] = $this->piVars['pid'];
 				// delete
 		} elseif ($this->piVars['prozess'] == 'del') {
-			// $this->debugInfo['prozAct'] = 'del';
 			$changedPageCollectorValueArray = array();
 			while (list($k, $v) = each($this->currentPageCollectorValueArray)) {
 				if ($v != $this->piVars['pid']) {
@@ -448,7 +446,6 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 			$this->currentPageCollectorValueArray = $changedPageCollectorValueArray;
 			// move up
 		} elseif ($this->piVars['prozess'] == 'up') {
-			// $this->debugInfo['prozAct'] = 'mup';
 				// get changings
 			$keyCurrentMove = array_search($this->piVars['pid'], $this->currentPageCollectorValueArray);
 			$valCurrentMove = $this->piVars['pid'];
@@ -459,7 +456,6 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 			$this->currentPageCollectorValueArray[$keyCurrentMove] = $valContiguousMove;
 				// move down
 		} elseif ($this->piVars['prozess'] == 'down') {
-			// $this->debugInfo['prozAct'] = 'mdown';
 				// get changings
 			$keyCurrentMove = array_search($this->piVars['pid'], $this->currentPageCollectorValueArray);
 			$valCurrentMove = $this->piVars['pid'];
@@ -483,8 +479,6 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 		} else {
 			// any other action can be placed here
 		}
-		// $this->debugInfo['curPCol'][] = array($this->currentPageCollectorValueArray,'*'=>'doPageCollectorActions');
-		// $this->debugInfo['dCurPCol'][] = $this->debugCurrentPageCollectorValueArray('doPageCollectorActions');
 			// any changings will result in dbUpdate for this session
 		$this->updateUserSession();
 		return;
@@ -659,36 +653,6 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 	}
 	
 	
-	/**
-	 * debugInfos for currentPageCollectorValueArray
-	 *
-	 * @param	Array	$info: ...
-	 * @return	Array	
-	 */
-	 
-	function debugCurrentPageCollectorValueArray($info) {
-		
-		$this->currentPageCollectorValueArray = mysql_real_escape_string($this->currentPageCollectorValueArray);
-		if (is_array($this->currentPageCollectorValueArray)) {
-			$query = 'SELECT title,uid FROM pages WHERE uid IN ('.implode(',', $this->currentPageCollectorValueArray).') '.$this->cObj->enableFields('pages');
-			$res = mysql(TYPO3_db, $query);
-		}
-		if (!$res) {
-			 return;
-		}
-		while ($row = mysql_fetch_assoc($res)) {
-			$debugCurrentPageCollectorValueArray[array_search($row['uid'], $this->currentPageCollectorValueArray)] = $row['uid'].' => '.$row['title'];
-		}
-		if (is_array($debugCurrentPageCollectorValueArray)) {
-			ksort ($debugCurrentPageCollectorValueArray);
-			$debugCurrentPageCollectorValueArray['*'] = $info;
-			return $debugCurrentPageCollectorValueArray;
-		} else {
-			return 'no \'curPCol\'';
-		}
-	}
-	
-	
 	/*************************
 	 *
 	 * Database User Sessions
@@ -799,7 +763,6 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 			// reset ProzessControler
 		$this->oldProzessControler = $this->newProzessControler;
 		$this->markerArray['SUCCESS'] = $this->pi_getLL('success_changes');
-		// $this->debugInfo['setCookie'] = 'changed';
 	}
 	 
 	 
@@ -856,8 +819,11 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 	 */
 	 
 	function transformIdListFromCookie($IdList) {
-		
-		$this->hash_length = t3lib_div::intInRange($this->hash_length, 6, 32);
+		if ($this->typo3Version < 4006000) {
+			$this->hash_length = t3lib_div::intInRange($this->hash_length, 6, 32);
+		} else {
+			$this->hash_length = t3lib_utility_Math::forceIntegerInRange($this->hash_length, 6, 32);
+		}
 		$sessionID = substr(md5(uniqid('').getmypid()), 0, $this->hash_length);
 		if (strstr($IdList, ',')) {
 				// get ID's from cookie

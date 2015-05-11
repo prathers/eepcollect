@@ -1,45 +1,55 @@
-10-11-16 Joerg Kummer  <typo3[by]enobe.de>
-	* Bugfix10723, DB-Update depend on  identifyMode
-10-09-24 Joerg Kummer  <typo3[by]enobe.de>
-	* add marker for pageURL, feature#9893 THX to Falko Trojahn
+14-07-12 Joerg Kummer  <typo3 et enobe dot de>
+	* changed TYPO3 v.6.2 compatibility 
+	
+13-05-03 Joerg Kummer  <typo3 et enobe dot de>
+	* fixed bug: Incompatible with 6.0 due to t3lib_div::intInRange, thx to Peter Schuhmann at DynamicLines
 
-10-09-20 Joerg Kummer  <typo3[by]enobe.de>
-	* bugfix: pageLink with simulateStaticDocuments
+12-08-03 Joerg Kummer  <typo3 et enobe dot de>
+	* fixed bug #39322: Incompatible with 4.7 due to t3lib_div::view_array
+	
+10-11-16 Joerg Kummer  <typo3 et enobe dot de>
+	* fixed bug #10723, DB-Update depend on identifyMode
+	
+10-09-24 Joerg Kummer  <typo3 et enobe dot de>
+	* add marker for pageURL, feature #9893 THX to Falko Trojahn
 
-10-07-30 Joerg Kummer  <typo3[by]enobe.de>
+10-09-20 Joerg Kummer  <typo3 et enobe dot de>
+	* fixed bug: pageLink with simulateStaticDocuments
+
+10-07-30 Joerg Kummer  <typo3 et enobe dot de>
 
 	* add frontend user identification
 	* add german documentation
 	* add constant editing
 	* add settings in flexform
 
-09-12-09 Joerg Kummer  <typo3[by]enobe.de>
+09-12-09 Joerg Kummer  <typo3 et enobe dot de>
 
 	* activate caching using cHash
 
-09-07-17 Joerg Kummer  <typo3[by]enobe.de>
+09-07-17 Joerg Kummer  <typo3 et enobe dot de>
 
-	* BUGFIX simplify replacements for templateCodes
+	* fixed bug: simplify replacements for templateCodes
 	  ('str_replace' insted of 'ereg_replace')
 
-09-07-15 Joerg Kummer  <typo3[by]enobe.de>
+09-07-15 Joerg Kummer  <typo3 et enobe dot de>
 
 	* add view of rootline to pagetitles (with TS-Setup settings)
 	* add use of PAGEID Markers to use in forms (powermail)
 	* add view_mode settings to TypoScript setup
 
-08-11-17 Joerg Kummer  <typo3[by]enobe.de>
+08-11-17 Joerg Kummer  <typo3 et enobe dot de>
 
 	* add table for sessions and collection
 	
-08-04-19 Joerg Kummer  <typo3[by]enobe.de>
+08-04-19 Joerg Kummer  <typo3 et enobe dot de>
 
-	* SecurityBug: strip_tags() funktion added for $_COOKIE
+	* fixed security bug: strip_tags() funktion added for $_COOKIE
 	* staticFile was 2times at different locations, cleared
 	* added a clearAll funktion
 	* changed some translations
 	* add view-conditions depends on count of collected pages
 	
-08-03-03 Joerg Kummer  <typo3[by]enobe.de>
+08-03-03 Joerg Kummer  <typo3 et enobe dot de>
 
 	* Initial release

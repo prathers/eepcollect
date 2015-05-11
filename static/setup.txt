@@ -54,7 +54,6 @@ plugin.tx_eepcollect_pi1 {
     collectioninfo_pagesnotfound_stdWrap.wrap = |
     viewcollectionlink_stdWrap.wrap = |
     whatispagecollect_stdWrap.wrap = |
-    debuginfo_stdWrap.wrap = |
     error_stdWrap.wrap = |
     success_stdWrap.wrap = |
     prozessadd_stdWrap.wrap = |
