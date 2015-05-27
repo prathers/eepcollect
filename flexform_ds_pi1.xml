@@ -7,26 +7,26 @@
 	<sDEF>
 	<ROOT>
 		<TCEforms>
-			<sheetTitle>LLL:EXT:eepcollect/locallang_tca.xml:eepcollect.pi_flexform.sheet_general</sheetTitle>
+			<sheetTitle>LLL:EXT:eepcollect/Resources/Private/Language/locallang_tca.xlf:eepcollect.pi_flexform.sheet_general</sheetTitle>
 		</TCEforms>
 		<type>array</type>
 		<el>
 		<view_mode>
 			<TCEforms>
-				<label>LLL:EXT:eepcollect/locallang_tca.xml:eepcollect.pi_flexform.view_mode</label>
+				<label>LLL:EXT:eepcollect/Resources/Private/Language/locallang_tca.xlf:eepcollect.pi_flexform.view_mode</label>
 				<config>
 					<type>select</type>
 					<items type="array">
 						<numIndex index="0" type="array">
-							<numIndex index="0">LLL:EXT:eepcollect/locallang_tca.xml:eepcollect.pi_flexform.choose</numIndex>
+							<numIndex index="0">LLL:EXT:eepcollect/Resources/Private/Language/locallang_tca.xlf:eepcollect.pi_flexform.choose</numIndex>
 							<numIndex index="1"></numIndex>
 						</numIndex>
 						<numIndex index="1" type="array">
-							<numIndex index="0">LLL:EXT:eepcollect/locallang_tca.xml:eepcollect.pi_flexform.view_mode_prozess</numIndex>
+							<numIndex index="0">LLL:EXT:eepcollect/Resources/Private/Language/locallang_tca.xlf:eepcollect.pi_flexform.view_mode_prozess</numIndex>
 							<numIndex index="1">view_prozess_mode</numIndex>
 						</numIndex>
 						<numIndex index="2" type="array">
-							<numIndex index="0">LLL:EXT:eepcollect/locallang_tca.xml:eepcollect.pi_flexform.view_mode_list</numIndex>
+							<numIndex index="0">LLL:EXT:eepcollect/Resources/Private/Language/locallang_tca.xlf:eepcollect.pi_flexform.view_mode_list</numIndex>
 							<numIndex index="1">view_list_mode</numIndex>
 						</numIndex>
 					</items>
@@ -38,24 +38,24 @@
 		</view_mode>
 		<identify_mode>
 			<TCEforms>
-				<label>LLL:EXT:eepcollect/locallang_tca.xml:eepcollect.pi_flexform.identify_mode</label>
+				<label>LLL:EXT:eepcollect/Resources/Private/Language/locallang_tca.xlf:eepcollect.pi_flexform.identify_mode</label>
 				<config>
 					<type>select</type>
 					<items type="array">
 						<numIndex index="0" type="array">
-							<numIndex index="0">LLL:EXT:eepcollect/locallang_tca.xml:eepcollect.pi_flexform.choose</numIndex>
+							<numIndex index="0">LLL:EXT:eepcollect/Resources/Private/Language/locallang_tca.xlf:eepcollect.pi_flexform.choose</numIndex>
 							<numIndex index="1"></numIndex>
 						</numIndex>
 						<numIndex index="1" type="array">
-							<numIndex index="0">LLL:EXT:eepcollect/locallang_tca.xml:eepcollect.pi_flexform.identify_mode.1</numIndex>
+							<numIndex index="0">LLL:EXT:eepcollect/Resources/Private/Language/locallang_tca.xlf:eepcollect.pi_flexform.identify_mode.1</numIndex>
 							<numIndex index="1">1</numIndex>
 						</numIndex>
 						<numIndex index="2" type="array">
-							<numIndex index="0">LLL:EXT:eepcollect/locallang_tca.xml:eepcollect.pi_flexform.identify_mode.2</numIndex>
+							<numIndex index="0">LLL:EXT:eepcollect/Resources/Private/Language/locallang_tca.xlf:eepcollect.pi_flexform.identify_mode.2</numIndex>
 							<numIndex index="1">2</numIndex>
 						</numIndex>
 						<numIndex index="3" type="array">
-							<numIndex index="0">LLL:EXT:eepcollect/locallang_tca.xml:eepcollect.pi_flexform.identify_mode.3</numIndex>
+							<numIndex index="0">LLL:EXT:eepcollect/Resources/Private/Language/locallang_tca.xlf:eepcollect.pi_flexform.identify_mode.3</numIndex>
 							<numIndex index="1">3</numIndex>
 						</numIndex>
 					</items>
@@ -66,7 +66,7 @@
 		</identify_mode>
 		<template_file>
 			<TCEforms>
-				<label>LLL:EXT:eepcollect/locallang_tca.xml:eepcollect.pi_flexform.template_file</label>
+				<label>LLL:EXT:eepcollect/Resources/Private/Language/locallang_tca.xlf:eepcollect.pi_flexform.template_file</label>
 				<config>
 					<type>group</type>
 					<internal_type>file</internal_type>
@@ -82,7 +82,7 @@
 		<pidOfListPageCollect>
 			<TCEforms>
 			<exclude>1</exclude>
-			<label>LLL:EXT:eepcollect/locallang_tca.xml:eepcollect.pi_flexform.pidOfListPageCollect</label>
+			<label>LLL:EXT:eepcollect/Resources/Private/Language/locallang_tca.xlf:eepcollect.pi_flexform.pidOfListPageCollect</label>
 			<config>
 				<type>group</type>
 				<internal_type>db</internal_type>
@@ -97,7 +97,7 @@
 		<pidOfwhatIsPageCollect>
 			<TCEforms>
 			<exclude>1</exclude>
-			<label>LLL:EXT:eepcollect/locallang_tca.xml:eepcollect.pi_flexform.pidOfwhatIsPageCollect</label>
+			<label>LLL:EXT:eepcollect/Resources/Private/Language/locallang_tca.xlf:eepcollect.pi_flexform.pidOfwhatIsPageCollect</label>
 			<config>
 				<type>group</type>
 				<internal_type>db</internal_type>
@@ -111,20 +111,20 @@
 		</pidOfwhatIsPageCollect>
 		<pagelinkType>
 			<TCEforms>
-				<label>LLL:EXT:eepcollect/locallang_tca.xml:eepcollect.pi_flexform.pagelinkType</label>
+				<label>LLL:EXT:eepcollect/Resources/Private/Language/locallang_tca.xlf:eepcollect.pi_flexform.pagelinkType</label>
 				<config>
 					<type>select</type>
 					<items type="array">
 						<numIndex index="0" type="array">
-							<numIndex index="0">LLL:EXT:eepcollect/locallang_tca.xml:eepcollect.pi_flexform.choose</numIndex>
+							<numIndex index="0">LLL:EXT:eepcollect/Resources/Private/Language/locallang_tca.xlf:eepcollect.pi_flexform.choose</numIndex>
 							<numIndex index="1"></numIndex>
 						</numIndex>
 						<numIndex index="1" type="array">
-							<numIndex index="0">LLL:EXT:eepcollect/locallang_tca.xml:eepcollect.pi_flexform.pagelinkType.title</numIndex>
+							<numIndex index="0">LLL:EXT:eepcollect/Resources/Private/Language/locallang_tca.xlf:eepcollect.pi_flexform.pagelinkType.title</numIndex>
 							<numIndex index="1">1</numIndex>
 						</numIndex>
 						<numIndex index="2" type="array">
-							<numIndex index="0">LLL:EXT:eepcollect/locallang_tca.xml:eepcollect.pi_flexform.pagelinkType.rootline</numIndex>
+							<numIndex index="0">LLL:EXT:eepcollect/Resources/Private/Language/locallang_tca.xlf:eepcollect.pi_flexform.pagelinkType.rootline</numIndex>
 							<numIndex index="1">2</numIndex>
 						</numIndex>
 					</items>
@@ -137,7 +137,7 @@
 		<page>
 			<TCEforms>
 			<exclude>1</exclude>
-			<label>LLL:EXT:eepcollect/locallang_tca.xml:eepcollect.pi_flexform.storagepage</label>
+			<label>LLL:EXT:eepcollect/Resources/Private/Language/locallang_tca.xlf:eepcollect.pi_flexform.storagepage</label>
 			<config>
 				<type>group</type>
 				<internal_type>db</internal_type>
@@ -152,7 +152,7 @@
 		<pidOfExcludedPages>
 			<TCEforms>
 			<exclude>1</exclude>
-			<label>LLL:EXT:eepcollect/locallang_tca.xml:eepcollect.pi_flexform.pidOfExcludedPages</label>
+			<label>LLL:EXT:eepcollect/Resources/Private/Language/locallang_tca.xlf:eepcollect.pi_flexform.pidOfExcludedPages</label>
 			<config>
 				<type>group</type>
 				<internal_type>db</internal_type>

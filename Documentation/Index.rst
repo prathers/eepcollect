@@ -14,26 +14,33 @@
    :class:  typoscript
 .. role::   php(code)
 
-==================
+
 EXT: PageCollector
 ==================
 
-:Author:
-      Jörg Kummer
+Extension Key: eepcollect
 
-:Email:
-      typo3@enobe.de
+Copyright 2008-2015, Jörg Kummer, typo3 et enobe dot de
 
-:Created:
-      2008-03-24 31::9:5:
+More http://pagecollector.enobe.de
 
-:Changed:
-      2010-09-24 15::5:3:
+Git https://github.com/prathers/eepcollect
+
+Forge http://forge.typo3.org/projects/show/extension-eepcollect
+
+This document is published under the Open Content License available from http://www.opencontent.org/opl.shtml
+The content of this document is related to TYPO3 - a GNU/GPL CMS/Framework available from www.typo3.com
 
 .. toctree::
    :maxdepth: 5
    :titlesonly:
    :glob:
 
-   ExtPagecollector/Index
+   Introduction/Index
+   UsersManual/Index
+   Configuration/Index
+   KnownProblems/Index
+   Upgrade/Index
+   To-doList/Index
+   Changelog/Index
 

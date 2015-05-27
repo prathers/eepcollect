@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2014 Joerg Kummer <typo et enobe dot de>
+*  (c) 2008-2015 Joerg Kummer <typo3 et enobe dot de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -22,17 +22,14 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
  
-#require_once(PATH_tslib.'class.tslib_pibase.php');
-#require_once(PATH_t3lib.'class.t3lib_page.php');
- 
 /**
-* Plugin 'pcollector' for the 'eepcollect' extension.
+* Plugin 'pagecollector' for the 'eepcollect' extension.
 *
-* @author Joerg Kummer <typo@enobe.de>
+* @author Joerg Kummer <typo3 et enobe dot de>
 * @package TYPO3
 * @subpackage tx_eepcollect
 */
-class tx_eepcollect_pi1 extends tslib_pibase {
+class tx_eepcollect_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 
 		// public vars
 	var $prefixId = 'tx_eepcollect_pi1'; // Same as class name
@@ -52,35 +49,6 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 		// defined values
 	var $hash_length = 6; // The ident-hash is normally 32 characters and should be! But if you are making sites for WAP-devices og other lowbandwidth stuff, you may shorten the length. Never let this value drop below 6. A length of 6 would give you more than 16 mio possibilities.
 	var $sessionTable = 'tx_eepcollect_sessions'; // table containing user-sessions
-	var $typo3Version;	// calculate typo version
-
-	/*	// undefined
-	var $conf;
-	var $cookieEnabled;
-	var $cookieStorageLifeExpires;
-	var $currentPageCollectorValueArray;
-	var $currentPageCollectorValueString;
-	var $currPageId;
-	var $currPageTitle;
-	var $displayConf;
-	var $feuserID;
-	var $identifyMode;
-	var $imagesConf;
-	var $local_cObj;
-	var $markerArray;
-	var $newProzessControler;
-	var $oldIdListArray;
-	var $oldIdListString;
-	var $oldProzessControler;
-	var $pageNotFoundCount;
-	var $pidList;
-	var $pidOfExcludedPages;
-	var $prozessPageCollector;
-	var $sessionID;
-	var $sys_language_mode;
-	var $template;
-	var $templateCode;
-	*/
 	 
 	/**
 	 * The main method of the PlugIn
@@ -94,7 +62,6 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 		
 		$this->conf = $conf;
 		$this->pi_setPiVarDefaults();
-		$this->typo3Version = class_exists('t3lib_utility_VersionNumber') ? t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version) : t3lib_div::int_from_ver(TYPO3_version);
 		$this->pi_loadLL();
 			// Init variables and get member data (formatted for HTML-output). If there was an error, display and exit.
 		$this->init();
@@ -198,8 +165,8 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 	 
 	function init() {
 		global $TCA;
-			// tslib_cObj
-		$this->local_cObj = t3lib_div::makeInstance('tslib_cObj'); // Local cObj.
+			// ContentObjectRenderer
+		$this->local_cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer'); // Local cObj.
 			// init FlexForm Values from the Content Element
 		$this->pi_initPIflexForm(); // Init FlexForm configuration for plugin
 			// sys_language_mode defines what to do if the requested translation is not found
@@ -338,11 +305,7 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 			$this->oldIdListArray = false;
 			$this->oldProzessControler = false;
 				// set totaly new session
-			if ($this->typo3Version < 4006000) {
-				$this->hash_length = t3lib_div::intInRange($this->hash_length, 6, 32);
-			} else {
-				$this->hash_length = t3lib_utility_Math::forceIntegerInRange($this->hash_length, 6, 32);
-			}
+			$this->hash_length = \TYPO3\CMS\Core\Utility\MathUtility::forceIntegerInRange($this->hash_length, 6, 32);
 			$this->sessionID = substr(md5(uniqid('').getmypid()), 0, $this->hash_length);
 				// if cookies are not disabled
 			if (!$this->piVars['prozess']) {
@@ -819,11 +782,7 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 	 */
 	 
 	function transformIdListFromCookie($IdList) {
-		if ($this->typo3Version < 4006000) {
-			$this->hash_length = t3lib_div::intInRange($this->hash_length, 6, 32);
-		} else {
-			$this->hash_length = t3lib_utility_Math::forceIntegerInRange($this->hash_length, 6, 32);
-		}
+		$this->hash_length = \TYPO3\CMS\Core\Utility\MathUtility::forceIntegerInRange($this->hash_length, 6, 32);
 		$sessionID = substr(md5(uniqid('').getmypid()), 0, $this->hash_length);
 		if (strstr($IdList, ',')) {
 				// get ID's from cookie
@@ -845,6 +804,52 @@ class tx_eepcollect_pi1 extends tslib_pibase {
 				return FALSE;
 			}
 		}
+	}
+
+	/**
+	 * Loads local-language values by looking for a "locallang" file in the
+	 * plugin class directory ($this->scriptRelPath) and if found includes it.
+	 * Also locallang values set in the TypoScript property "_LOCAL_LANG" are
+	 * merged onto the values found in the "locallang" file.
+	 * Supported file extensions xlf, xml
+	 *
+	 * @return void
+	 */
+	public function pi_loadLL() {
+		if (!$this->LOCAL_LANG_loaded && $this->scriptRelPath) {
+			$basePath = 'EXT:' . $this->extKey . '/Resources/Private/Language/locallang.xlf';
+			// Read the strings in the required charset (since TYPO3 4.2)
+			$this->LOCAL_LANG = \TYPO3\CMS\Core\Utility\GeneralUtility::readLLfile($basePath, $this->LLkey, $this->frontendController->renderCharset);
+			$alternativeLanguageKeys = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $this->altLLkey, TRUE);
+			foreach ($alternativeLanguageKeys as $languageKey) {
+				$tempLL = \TYPO3\CMS\Core\Utility\GeneralUtility::readLLfile($basePath, $languageKey);
+				if ($this->LLkey !== 'default' && isset($tempLL[$languageKey])) {
+					$this->LOCAL_LANG[$languageKey] = $tempLL[$languageKey];
+				}
+			}
+			// Overlaying labels from TypoScript (including fictitious language keys for non-system languages!):
+			if (isset($this->conf['_LOCAL_LANG.'])) {
+				// Clear the "unset memory"
+				$this->LOCAL_LANG_UNSET = array();
+				foreach ($this->conf['_LOCAL_LANG.'] as $languageKey => $languageArray) {
+					// Remove the dot after the language key
+					$languageKey = substr($languageKey, 0, -1);
+					// Don't process label if the language is not loaded
+					if (is_array($languageArray) && isset($this->LOCAL_LANG[$languageKey])) {
+						foreach ($languageArray as $labelKey => $labelValue) {
+							if (!is_array($labelValue)) {
+								$this->LOCAL_LANG[$languageKey][$labelKey][0]['target'] = $labelValue;
+								if ($labelValue === '') {
+									$this->LOCAL_LANG_UNSET[$languageKey][$labelKey] = '';
+								}
+								$this->LOCAL_LANG_charset[$languageKey][$labelKey] = 'utf-8';
+							}
+						}
+					}
+				}
+			}
+		}
+		$this->LOCAL_LANG_loaded = 1;
 	}
 }
  

@@ -10,7 +10,7 @@ $TCA["tx_eepcollect_sessions"] = array (
 	"columns" => array (
 		"ses_id" => Array (		
 			"exclude" => 1,		
-			"label" => "LLL:EXT:eepcollect/locallang_db.xml:tx_eepcollect_sessions.ses_id",		
+			"label" => "LLL:EXT:eepcollect/Resources/Private/Language/locallang_db.xlf:tx_eepcollect_sessions.ses_id",		
 			"config" => Array (
 				"type" => "input",	
 				"size" => "30",
@@ -18,11 +18,11 @@ $TCA["tx_eepcollect_sessions"] = array (
 		),
 		"feuser_id" => Array (		
 			"exclude" => 1,		
-			"label" => "LLL:EXT:eepcollect/locallang_db.xml:tx_eepcollect_sessions.feuser_id",		
+			"label" => "LLL:EXT:eepcollect/Resources/Private/Language/locallang_db.xlf:tx_eepcollect_sessions.feuser_id",		
 			"config" => Array (
 				"type" => "select",
 				"items" => Array (
-                    Array("LLL:EXT:eepcollect/locallang_db.xml:tx_eepcollect_sessions.feuser_id.0", "0"),
+                    Array("LLL:EXT:eepcollect/Resources/Private/Language/locallang_db.xlf:tx_eepcollect_sessions.feuser_id.0", "0"),
                 ),
 				"foreign_table" => "fe_users",
 				"size" => 1,
@@ -33,7 +33,7 @@ $TCA["tx_eepcollect_sessions"] = array (
 		),
 		"ses_tstamp" => Array (		
 			"exclude" => 1,		
-			"label" => "LLL:EXT:eepcollect/locallang_db.xml:tx_eepcollect_sessions.ses_tstamp",		
+			"label" => "LLL:EXT:eepcollect/Resources/Private/Language/locallang_db.xlf:tx_eepcollect_sessions.ses_tstamp",		
 			"config" => Array (
 				"type" => "none",
 				"size" => "12",
@@ -44,7 +44,7 @@ $TCA["tx_eepcollect_sessions"] = array (
 		),
 		"ses_data" => Array (		
 			"exclude" => 1,		
-			"label" => "LLL:EXT:eepcollect/locallang_db.xml:tx_eepcollect_sessions.ses_data",		
+			"label" => "LLL:EXT:eepcollect/Resources/Private/Language/locallang_db.xlf:tx_eepcollect_sessions.ses_data",		
 			"config" => Array (
 				"type" => "input",	
 				"size" => "30",

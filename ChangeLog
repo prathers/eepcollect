@@ -1,20 +1,42 @@
+15-05-27 Joerg Kummer  <typo3 et enobe dot de>
+
+	v1.0.15
+	* adjust locallang
+	* adjust documentation
+
+15-05-05 Joerg Kummer  <typo3 et enobe dot de>
+
+	* changed TYPO3 v.7.2 compatibility
+
+14-10-27 Preben R. Soerensen  <preben et rather dot dk>
+
+	* convert locallang to xliff
+	* convert documentation to ReST
+
 14-07-12 Joerg Kummer  <typo3 et enobe dot de>
-	* changed TYPO3 v.6.2 compatibility 
-	
+
+	v1.0.14
+	* changed TYPO3 v.6.2 compatibility
+
 13-05-03 Joerg Kummer  <typo3 et enobe dot de>
-	* fixed bug: Incompatible with 6.0 due to t3lib_div::intInRange, thx to Peter Schuhmann at DynamicLines
+
+	* bugfix: Incompatible with 6.0 due to t3lib_div::intInRange, thx to Peter Schuhmann at DynamicLines
 
 12-08-03 Joerg Kummer  <typo3 et enobe dot de>
-	* fixed bug #39322: Incompatible with 4.7 due to t3lib_div::view_array
-	
+
+	* bugfix #39322: Incompatible with 4.7 due to t3lib_div::view_array
+
 10-11-16 Joerg Kummer  <typo3 et enobe dot de>
-	* fixed bug #10723, DB-Update depend on identifyMode
-	
+
+	* bugfix #10723, DB-Update depend on identifyMode
+
 10-09-24 Joerg Kummer  <typo3 et enobe dot de>
-	* add marker for pageURL, feature #9893 THX to Falko Trojahn
+
+	* add marker for pageURL, feature #9893 thx to Falko Trojahn
 
 10-09-20 Joerg Kummer  <typo3 et enobe dot de>
-	* fixed bug: pageLink with simulateStaticDocuments
+
+	* bugfix: pageLink with simulateStaticDocuments
 
 10-07-30 Joerg Kummer  <typo3 et enobe dot de>
 
@@ -29,7 +51,7 @@
 
 09-07-17 Joerg Kummer  <typo3 et enobe dot de>
 
-	* fixed bug: simplify replacements for templateCodes
+	* bugfix: simplify replacements for templateCodes
 	  ('str_replace' insted of 'ereg_replace')
 
 09-07-15 Joerg Kummer  <typo3 et enobe dot de>
@@ -41,7 +63,7 @@
 08-11-17 Joerg Kummer  <typo3 et enobe dot de>
 
 	* add table for sessions and collection
-	
+
 08-04-19 Joerg Kummer  <typo3 et enobe dot de>
 
 	* fixed security bug: strip_tags() funktion added for $_COOKIE
@@ -49,7 +71,7 @@
 	* added a clearAll funktion
 	* changed some translations
 	* add view-conditions depends on count of collected pages
-	
+
 08-03-03 Joerg Kummer  <typo3 et enobe dot de>
 
 	* Initial release
