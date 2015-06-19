@@ -81,6 +81,10 @@ v1.0.15
 - add ReST documentation, thx to Preben R. Sørensen
 - convert locallang to xlf, thx to Preben R. Sørensen
 
+v1.0.16
+
+- minor bugfix #67624, thx to Wolfgang Medicus
+
 See ChangeLog
 
 
