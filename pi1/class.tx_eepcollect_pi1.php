@@ -21,7 +21,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
- 
+
 /**
 * Plugin 'pagecollector' for the 'eepcollect' extension.
 *
@@ -40,16 +40,16 @@ class tx_eepcollect_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	var $pi_USER_INT_obj = 0;
 	var $keepPIvarsCache = 1;
 	var $piVars = Array (		// This is the incoming array GET
-		'prozess' => '',		// 
-		'pid' => '',			// 
-		'ctrl' => '',			// 
+		'prozess' => '',		//
+		'pid' => '',			//
+		'ctrl' => '',			//
 	);
-	
+
 		// private vars
 		// defined values
 	var $hash_length = 6; // The ident-hash is normally 32 characters and should be! But if you are making sites for WAP-devices og other lowbandwidth stuff, you may shorten the length. Never let this value drop below 6. A length of 6 would give you more than 16 mio possibilities.
 	var $sessionTable = 'tx_eepcollect_sessions'; // table containing user-sessions
-	 
+
 	/**
 	 * The main method of the PlugIn
 	 *
@@ -57,9 +57,9 @@ class tx_eepcollect_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 * @param array  $conf: The PlugIn configuration
 	 * @return The  content that is displayed on the website
 	 */
-	 
-	function main($content, $conf) {	
-		
+
+	function main($content, $conf) {
+
 		$this->conf = $conf;
 		$this->pi_setPiVarDefaults();
 		$this->pi_loadLL();
@@ -155,14 +155,14 @@ class tx_eepcollect_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		}
 		return $this->cObj->substituteMarkerArray($this->templateCode, $this->markerArray, '###|###', 0);
 	}
-	 
-	 
+
+
 	/**
 	 * INITIALISATION
 	 *
 	 * @return void
 	 */
-	 
+
 	function init() {
 		global $TCA;
 			// ContentObjectRenderer
@@ -254,14 +254,14 @@ class tx_eepcollect_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 			// we already has got GPvars: $this->piVars; $this->piVars['prozess']; $this->piVars['pid']; $this->piVars['ctrl'];
 		$this->prozessPageCollector = $this->prozessPageCollectorActions(); // sets the '$this->oldIdListArray' and '$this->oldProzessControler'
 	}
-	 
-	 
+
+
 	/**
 	 * read from cookie
 	 *
 	 * @return void
 	 */
-	 
+
 	function get_cookie() {
 		/*
 		 * any action/prozess for collection can only execute after cookie was set
@@ -320,17 +320,17 @@ class tx_eepcollect_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 			}
 		}
 	}
-	 
-	 
+
+
 	/**
 	 * read stored ID's from given session-data
 	 *
 	 * @param String  $sessionData: commaseparated list of id's
 	 * @return void
 	 */
-	 
+
 	function get_idList($sessionData) {
-		
+
 		if ($sessionData) {
 				// get values from session data
 			$this->oldIdListString = $sessionData;
@@ -341,14 +341,14 @@ class tx_eepcollect_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 			$this->oldProzessControler = false;
 		}
 	}
-	 
-	 
+
+
 	/**
 	 * check prozess of page-collection actions comming during GPvars: $this->piVars
 	 *
 	 * @return Array	containing session and prozess for further needs
 	 */
-	 
+
 	function prozessPageCollectorActions() {
 			// do clear all
 		/*
@@ -383,14 +383,14 @@ class tx_eepcollect_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		}
 		return;
 	}
-	 
-	 
+
+
 	/**
 	 * do prozess of page-collection actions comming during GPvars: $this->piVars
 	 *
 	 * @return void
 	 */
-	 
+
 	function doPageCollectorActions() {
 			// add
 		if ($this->piVars['prozess'] == 'add') {
@@ -446,15 +446,15 @@ class tx_eepcollect_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		$this->updateUserSession();
 		return;
 	}
-	 
-	 
+
+
 	/**
 	 * COLLECTION INFOS AND LINKED STUFF
 	 *
 	 * @param String  containing template
 	 * @return void
 	 */
-	 
+
 	function view_pageCollector($templateSection) {
 			// template and marker stuff
 		$templateCodeSubpartItem = $this->cObj->getSubpart($this->templateCode, '###'.$templateSection.'###');
@@ -511,7 +511,7 @@ class tx_eepcollect_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 				$pageLinkStr = $pageRootline;
 			}
 			$pageLink = $this->pi_linkToPage($pageLinkStr,$pid,$target,$urlParameters);
-			
+
 			if ($pid == $GLOBALS['TSFE']->id) {
 				$this->markerArraySub['PAGELINK'] = $this->local_cObj->stdWrap($pageLink, $this->displayConf['collectionlist_pagelinkcurrent_stdWrap.']);
 			} else {
@@ -535,22 +535,22 @@ class tx_eepcollect_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 				// collect all items wrapped in one string
 			$listItems .= $this->local_cObj->stdWrap($listItem, $displayConfListitem[$i-1]);
 		}
-		 
+
 		$this->templateCode = $this->cObj->substituteSubpart($this->templateCode, '###'.$templateSection.'###', $listItems);
 	}
-	 
-	 
+
+
 	/**
 	 * view current PageProzess ('add' or 'exists')
 	 *
 	 * @return Array	containing HTML snippets
 	 */
-	 
+
 	function view_currentPageProzess() {
-		
+
 			// set title
 		$currentPageProzess['title'] = $this->currPageTitle;
-		 
+
 			// arrange image (add/delete/move buttons)
 			// set prozess info ('do add' or 'already added' or 'delete current')
 
@@ -581,17 +581,17 @@ class tx_eepcollect_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 
 		return $currentPageProzess;
 	}
-	 
-	 
+
+
 	/**
 	 * get page titles as array
 	 *
 	 * @param	Array	containing page id's
 	 * @return	Array containing page titles
 	 */
-	 
+
 	function get_currentPageCollectorTitleArray($currentPageCollectorValueArray) {
-		
+
 		if (is_array($currentPageCollectorValueArray)) {
 			while (list($key, $uid) = each($currentPageCollectorValueArray)) {
 				$page = $GLOBALS['TSFE']->sys_page->getPage($uid);
@@ -609,13 +609,13 @@ class tx_eepcollect_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 				}
 			}
 			$this->pagesNotFoundCount = $pagesNotFoundCount;
-		}
 			// sort and return
-		ksort ($currentPageCollectorTitleArray);
+			ksort ($currentPageCollectorTitleArray);
+		}
 		return $currentPageCollectorTitleArray;
 	}
-	
-	
+
+
 	/*************************
 	 *
 	 * Database User Sessions
@@ -624,8 +624,8 @@ class tx_eepcollect_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 * in db (tx_eepcollect_sessions)
 	 *
 	 *************************/
-	 
-	 
+
+
 	/**
 	 * Creates a user session record in table tx_eepcollect_session.
 	 *
@@ -633,9 +633,9 @@ class tx_eepcollect_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 * @param string  $idListString: commaseparated list of ID's
 	 * @return void
 	 */
-	 
+
 	function createUserSession($sessionID,$idListString='') {
-		
+
 		if ($sessionID OR $this->feuserID) {
 				// inserts
 			$insertFields = array(
@@ -662,17 +662,17 @@ class tx_eepcollect_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 				// insert execution should be checked
 			#$sql_insert_id = $GLOBALS['TYPO3_DB']->sql_insert_id();
 		} else {
-		
-		}		
+
+		}
 	}
-	 
-	 
+
+
 	/**
 	 * Update a user session record.
 	 *
 	 * @return void
 	 */
-	 
+
 	function updateUserSession() {
 			//  get id list as string
 		if ($this->currentPageCollectorValueArray) {
@@ -727,14 +727,14 @@ class tx_eepcollect_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		$this->oldProzessControler = $this->newProzessControler;
 		$this->markerArray['SUCCESS'] = $this->pi_getLL('success_changes');
 	}
-	 
-	 
+
+
 	/**
 	 * Read from a user session record.
 	 *
 	 * @return Array	containing table row
 	 */
-	 
+
 	function readUserSession() {
 			// check DB-table and read session from db
 			// where
@@ -768,8 +768,8 @@ class tx_eepcollect_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		$row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
 		return $row;
 	}
-	 
-	 
+
+
 	/**
 	 * transform a given idList stored directly in cookie to store it in DBase since changes from version 0.0.2
 	 *
@@ -780,7 +780,7 @@ class tx_eepcollect_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 *
 	 * @return Int	session id
 	 */
-	 
+
 	function transformIdListFromCookie($IdList) {
 		$this->hash_length = \TYPO3\CMS\Core\Utility\MathUtility::forceIntegerInRange($this->hash_length, 6, 32);
 		$sessionID = substr(md5(uniqid('').getmypid()), 0, $this->hash_length);
@@ -852,9 +852,9 @@ class tx_eepcollect_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		$this->LOCAL_LANG_loaded = 1;
 	}
 }
- 
+
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/eepcollect/pi1/class.tx_eepcollect_pi1.php']) {
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/eepcollect/pi1/class.tx_eepcollect_pi1.php']);
 }
-	 
+
 ?>
