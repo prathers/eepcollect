@@ -3,90 +3,27 @@
   <file source-language="en" target-language="da" datatype="plaintext" original="messages" date="2015-05-26T12:00:00Z" product-name="eepcollect">
     <header/>
     <body>
-      <trans-unit id="enableyourcookie" xml:space="preserve" approved="yes">
-				<source>Aktivate your cookies!</source>
-				<target state="final">Aktivér dine cookies!</target>
-			</trans-unit>
-      <trans-unit id="whatispagecollect" xml:space="preserve" approved="yes">
-				<source>What is 'Pagecollect'?</source>
-				<target state="final">Hvad er 'Sidesamling'?</target>
-			</trans-unit>
-      <trans-unit id="error_unknown" xml:space="preserve" approved="yes">
-				<source>Any unknown Error occured.</source>
-				<target state="final">En ukendt fejl opstod.</target>
-			</trans-unit>
-      <trans-unit id="error_nochanges" xml:space="preserve" approved="yes">
-				<source>Pagecollection wasn't updated!</source>
-				<target state="final">Sidesamling var ikke opdateret!</target>
-			</trans-unit>
-      <trans-unit id="error_noviewmode" xml:space="preserve" approved="yes">
-				<source>No view-mode defined for this plugin!</source>
-				<target state="final">Ingen visning defineret for denne plugin!</target>
-			</trans-unit>
-      <trans-unit id="error_oldsession" xml:space="preserve" approved="yes">
-				<source>Pagecollection wasn't updated!</source>
-				<target state="final">Sidesamling var ikke opdateret!</target>
-			</trans-unit>
-      <trans-unit id="success_changes" xml:space="preserve" approved="yes">
-				<source>Pagecollection updated!</source>
-				<target state="final">Sidesamling opdateret!</target>
-			</trans-unit>
-      <trans-unit id="collectioninfo" xml:space="preserve" approved="yes">
-				<source>%s page(s) collected</source>
-				<target state="final">%s side(r) samlet</target>
-			</trans-unit>
-      <trans-unit id="collectioninfo_empty" xml:space="preserve" approved="yes">
-				<source>No pages in collection.</source>
-				<target state="final">Ingen sider i samling.</target>
-			</trans-unit>
-      <trans-unit id="collectioninfo_nouser" xml:space="preserve" approved="yes">
-				<source>You must login to collect content from this page.</source>
-				<target state="final">Du skal være logget ind for at samle indhold fra denne side.</target>
-			</trans-unit>
-      <trans-unit id="collectioninfo_pagesnotfound" xml:space="preserve" approved="yes">
-				<source>%s page(s) not found.</source>
-				<target state="final">%s side(r) ikke fundet.</target>
-			</trans-unit>
-      <trans-unit id="addCurrentPageToCollection" xml:space="preserve" approved="yes">
-				<source>Add this page to collection</source>
-				<target state="final">Tilføj denne side til samling</target>
-			</trans-unit>
-      <trans-unit id="delCurrentPageToCollection" xml:space="preserve" approved="yes">
-				<source>Delete this page from collection</source>
-				<target state="final">Slet denne side fra samling</target>
-			</trans-unit>
-      <trans-unit id="currentPageAddToCollection" xml:space="preserve" approved="yes">
-				<source>Page added to collection</source>
-				<target state="final">Side tilføjet til samling</target>
-			</trans-unit>
-      <trans-unit id="currentPageInCollection" xml:space="preserve" approved="yes">
-				<source>Page added to collection</source>
-				<target state="final">Side tilføjet til samling</target>
-			</trans-unit>
-      <trans-unit id="showFullPageCollection" xml:space="preserve" approved="yes">
-				<source>Show pagecollection</source>
-				<target state="final">Vis sidesamling</target>
-			</trans-unit>
-      <trans-unit id="prozess_add" xml:space="preserve" approved="yes">
-				<source>Add page</source>
-				<target state="final">Tilføj side</target>
-			</trans-unit>
-      <trans-unit id="prozess_delete" xml:space="preserve" approved="yes">
-				<source>Delete page</source>
-				<target state="final">Slet side</target>
-			</trans-unit>
-      <trans-unit id="prozess_moveup" xml:space="preserve" approved="yes">
-				<source>Move page up</source>
-				<target state="final">Flyt side op</target>
-			</trans-unit>
-      <trans-unit id="prozess_movedown" xml:space="preserve" approved="yes">
-				<source>Move page down</source>
-				<target state="final">Flyt side ned</target>
-			</trans-unit>
-      <trans-unit id="clearall" xml:space="preserve" approved="yes">
-				<source>Clear collection</source>
-				<target state="final">Ryd samling</target>
-			</trans-unit>
-    </body>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</body>
   </file>
 </xliff>
