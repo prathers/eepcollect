@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" target-language="da" datatype="plaintext" original="messages" date="2015-05-26T12:00:00Z" product-name="eepcollect">
+    <header/>
+    <body>
+      <trans-unit id="eepcollect" xml:space="preserve" approved="yes">
+				<source>Pagecollection</source>
+				<target state="final">Sidesamling</target>
+			</trans-unit>
+      <trans-unit id="eepcollect.pi_flexform.sheet_general" xml:space="preserve" approved="yes">
+				<source>General Settings</source>
+				<target state="final">Generelle indstillinger</target>
+			</trans-unit>
+      <trans-unit id="eepcollect.pi_flexform.view_mode" xml:space="preserve" approved="yes">
+				<source>View mode:</source>
+				<target state="final">Visningstilstand:</target>
+			</trans-unit>
+      <trans-unit id="eepcollect.pi_flexform.choose" xml:space="preserve" approved="yes">
+				<source>--Choose!--</source>
+				<target state="final">--Vælg!--</target>
+			</trans-unit>
+      <trans-unit id="eepcollect.pi_flexform.view_mode_prozess" xml:space="preserve" approved="yes">
+				<source>Toolbar</source>
+				<target state="final">Værktøjslinje</target>
+			</trans-unit>
+      <trans-unit id="eepcollect.pi_flexform.view_mode_list" xml:space="preserve" approved="yes">
+				<source>Resultlist</source>
+				<target state="final">Resultatliste</target>
+			</trans-unit>
+      <trans-unit id="eepcollect.pi_flexform.identify_mode" xml:space="preserve" approved="yes">
+				<source>User identication:</source>
+				<target state="final">Brugeridentifikation:</target>
+			</trans-unit>
+      <trans-unit id="eepcollect.pi_flexform.identify_mode.1" xml:space="preserve" approved="yes">
+				<source>Only by cookie (default)</source>
+				<target state="final">Kun via cookie (standard)</target>
+			</trans-unit>
+      <trans-unit id="eepcollect.pi_flexform.identify_mode.2" xml:space="preserve" approved="yes">
+				<source>Only by FE-User</source>
+				<target state="final">Kun via FE-bruger</target>
+			</trans-unit>
+      <trans-unit id="eepcollect.pi_flexform.identify_mode.3" xml:space="preserve" approved="yes">
+				<source>By FE-User or Cookie</source>
+				<target state="final">Via FE-bruger eller cookie</target>
+			</trans-unit>
+      <trans-unit id="eepcollect.pi_flexform.template_file" xml:space="preserve" approved="yes">
+				<source>Template file:</source>
+				<target state="final">Skabelonfil:</target>
+			</trans-unit>
+      <trans-unit id="eepcollect.pi_flexform.pidOfListPageCollect" xml:space="preserve" approved="yes">
+				<source>PageId for list Display:</source>
+				<target state="final">Sideid for listevisning:</target>
+			</trans-unit>
+      <trans-unit id="eepcollect.pi_flexform.pidOfwhatIsPageCollect" xml:space="preserve" approved="yes">
+				<source>PageId for tool-infos:</source>
+				<target state="final">Sideid for værktøjsinfo:</target>
+			</trans-unit>
+      <trans-unit id="eepcollect.pi_flexform.pagelinkType" xml:space="preserve" approved="yes">
+				<source>Type of pagelink</source>
+				<target state="final">Sidelink-type</target>
+			</trans-unit>
+      <trans-unit id="eepcollect.pi_flexform.pagelinkType.title" xml:space="preserve" approved="yes">
+				<source>Pagetitle</source>
+				<target state="final">Sidetitel</target>
+			</trans-unit>
+      <trans-unit id="eepcollect.pi_flexform.storagepage" xml:space="preserve" approved="yes">
+				<source>Startingpoint:</source>
+				<target state="final">Udgangspunkt:</target>
+			</trans-unit>
+      <trans-unit id="eepcollect.pi_flexform.pidOfExcludedPages" xml:space="preserve" approved="yes">
+				<source>Exlude pages from collection:</source>
+				<target state="final">Ekskluder sider fra sammlingen:</target>
+			</trans-unit>
+    </body>
+  </file>
+</xliff>
