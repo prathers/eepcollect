@@ -3,8 +3,12 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2015-05-26T12:00:00Z" product-name="eepcollect" target-language="de">
     <header/>
     <body>
-			
-			
-		</body>
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
+				<source>Page collector database.</source>
+			<target state="final">Seitensammlungs Datenbank</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
+				<source>Visitors got the possibility to choose some predefined TYPO3 pages for adding them to their own favorit-list like a basket in a shop. Here you can see, add or edit available collections as single sessions.</source>
+			<target state="final">Besucher erhalten die Möglichkeit vordefinierte TYPO3-Seiten auszuwählen und ihrer eignen favorisierten Sammlung hinzuzufügen, ähnlich einem Warenkorb. Hier kann man einzelne Sammlungen einsehen, hinzufügen oder bearbeiten.</target></trans-unit>
+    </body>
   </file>
 </xliff>
