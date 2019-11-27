@@ -9,12 +9,21 @@
       <trans-unit id="tx_eepcollect_sessions" xml:space="preserve" approved="yes">
 				<source>Collection</source>
 			<target state="final">Kollektion</target></trans-unit>
+      <trans-unit id="tx_eepcollect_sessions.ses_id" xml:space="preserve" approved="yes">
+				<source>CookieID/Code</source>
+			<target state="final">CookieID/Kode</target></trans-unit>
+      <trans-unit id="tx_eepcollect_sessions.feuser_id" xml:space="preserve" approved="yes">
+				<source>FEUser</source>
+			<target state="final">FEUser</target></trans-unit>
       <trans-unit id="tx_eepcollect_sessions.feuser_id.0" xml:space="preserve" approved="yes">
 				<source>none</source>
 			<target state="final">ingen</target></trans-unit>
       <trans-unit id="tx_eepcollect_sessions.ses_tstamp" xml:space="preserve" approved="yes">
 				<source>Date/Time</source>
 			<target state="final">Dato/tid</target></trans-unit>
+      <trans-unit id="tx_eepcollect_sessions.ses_data" xml:space="preserve" approved="yes">
+				<source>Data</source>
+			<target state="final">Data</target></trans-unit>
     </body>
   </file>
 </xliff>
