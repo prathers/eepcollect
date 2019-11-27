@@ -3,27 +3,45 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2015-05-26T12:00:00Z" product-name="eepcollect" target-language="fr">
     <header/>
     <body>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		</body>
+      <trans-unit id="whatispagecollect" xml:space="preserve" approved="yes">
+				<source>What is 'Pagecollect'?</source>
+			<target state="final">Aide ?</target></trans-unit>
+      <trans-unit id="collectioninfo" xml:space="preserve" approved="yes">
+				<source>%s page(s) collected</source>
+			<target state="final">%s page(s) dans le carnet</target></trans-unit>
+      <trans-unit id="collectioninfo_empty" xml:space="preserve" approved="yes">
+				<source>No pages in collection.</source>
+			<target state="final">Carnet vide.</target></trans-unit>
+      <trans-unit id="addCurrentPageToCollection" xml:space="preserve" approved="yes">
+				<source>Add this page to collection</source>
+			<target state="final">Ajouter au carnet</target></trans-unit>
+      <trans-unit id="delCurrentPageToCollection" xml:space="preserve" approved="yes">
+				<source>Delete this page from collection</source>
+			<target state="final">Supprimer du carnet</target></trans-unit>
+      <trans-unit id="currentPageAddToCollection" xml:space="preserve" approved="yes">
+				<source>Page added to collection</source>
+			<target state="final">Ajouter cette page au carnet</target></trans-unit>
+      <trans-unit id="currentPageInCollection" xml:space="preserve" approved="yes">
+				<source>Page added to collection</source>
+			<target state="final">Ajouter cette page au carnet</target></trans-unit>
+      <trans-unit id="showFullPageCollection" xml:space="preserve" approved="yes">
+				<source>Show pagecollection</source>
+			<target state="final">Afficher le carnet</target></trans-unit>
+      <trans-unit id="prozess_add" xml:space="preserve" approved="yes">
+				<source>Add page</source>
+			<target state="final">Ajouter page</target></trans-unit>
+      <trans-unit id="prozess_delete" xml:space="preserve" approved="yes">
+				<source>Delete page</source>
+			<target state="final">Supprimer cette page</target></trans-unit>
+      <trans-unit id="prozess_moveup" xml:space="preserve" approved="yes">
+				<source>Move page up</source>
+			<target state="final">Vers le haut</target></trans-unit>
+      <trans-unit id="prozess_movedown" xml:space="preserve" approved="yes">
+				<source>Move page down</source>
+			<target state="final">Vers le bas</target></trans-unit>
+      <trans-unit id="clearall" xml:space="preserve" approved="yes">
+				<source>Clear collection</source>
+			<target state="final">Vider le carnet</target></trans-unit>
+    </body>
   </file>
 </xliff>
