@@ -30,6 +30,12 @@
       <trans-unit id="collectioninfo_empty" xml:space="preserve" approved="yes">
 				<source>No pages in collection.</source>
 			<target state="final">Geen pagina's in 'Mijn Briefing'.</target></trans-unit>
+      <trans-unit id="collectioninfo_nouser" xml:space="preserve" approved="yes">
+				<source>You must login to collect content from this page.</source>
+			<target state="final">Je moet inloggen om inhoud te verzamelen van deze pagina.</target></trans-unit>
+      <trans-unit id="collectioninfo_pagesnotfound" xml:space="preserve" approved="yes">
+				<source>%s page(s) not found.</source>
+			<target state="final">%s pagina(s) niet gevonden.</target></trans-unit>
       <trans-unit id="addCurrentPageToCollection" xml:space="preserve" approved="yes">
 				<source>Add this page to collection</source>
 			<target state="final">Pagina toevoegen aan 'Mijn Briefing'</target></trans-unit>
