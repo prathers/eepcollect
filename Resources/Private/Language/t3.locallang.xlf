@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2015-05-26T12:00:00Z" product-name="eepcollect" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id="enableyourcookie" xml:space="preserve">
+				<source>Aktivate your cookies!</source>
+			<target>crwdns81445:0crwdne81445:0</target></trans-unit>
+      <trans-unit id="whatispagecollect" xml:space="preserve">
+				<source>What is 'Pagecollect'?</source>
+			<target>crwdns81447:0crwdne81447:0</target></trans-unit>
+      <trans-unit id="error_unknown" xml:space="preserve">
+				<source>Any unknown Error occured.</source>
+			<target>crwdns81449:0crwdne81449:0</target></trans-unit>
+      <trans-unit id="error_nochanges" xml:space="preserve">
+				<source>Pagecollection wasn't updated!</source>
+			<target>crwdns81451:0crwdne81451:0</target></trans-unit>
+      <trans-unit id="error_noviewmode" xml:space="preserve">
+				<source>No view-mode defined for this plugin!</source>
+			<target>crwdns81453:0crwdne81453:0</target></trans-unit>
+      <trans-unit id="error_oldsession" xml:space="preserve">
+				<source>Pagecollection wasn't updated!</source>
+			<target>crwdns81455:0crwdne81455:0</target></trans-unit>
+      <trans-unit id="success_changes" xml:space="preserve">
+				<source>Pagecollection updated!</source>
+			<target>crwdns81457:0crwdne81457:0</target></trans-unit>
+      <trans-unit id="collectioninfo" xml:space="preserve">
+				<source>%s page(s) collected</source>
+			<target>crwdns81459:0%scrwdne81459:0</target></trans-unit>
+      <trans-unit id="collectioninfo_empty" xml:space="preserve">
+				<source>No pages in collection.</source>
+			<target>crwdns81461:0crwdne81461:0</target></trans-unit>
+      <trans-unit id="collectioninfo_nouser" xml:space="preserve">
+				<source>You must login to collect content from this page.</source>
+			<target>crwdns81463:0crwdne81463:0</target></trans-unit>
+      <trans-unit id="collectioninfo_pagesnotfound" xml:space="preserve">
+				<source>%s page(s) not found.</source>
+			<target>crwdns81465:0%scrwdne81465:0</target></trans-unit>
+      <trans-unit id="addCurrentPageToCollection" xml:space="preserve">
+				<source>Add this page to collection</source>
+			<target>crwdns81467:0crwdne81467:0</target></trans-unit>
+      <trans-unit id="delCurrentPageToCollection" xml:space="preserve">
+				<source>Delete this page from collection</source>
+			<target>crwdns81469:0crwdne81469:0</target></trans-unit>
+      <trans-unit id="currentPageAddToCollection" xml:space="preserve">
+				<source>Page added to collection</source>
+			<target>crwdns81471:0crwdne81471:0</target></trans-unit>
+      <trans-unit id="currentPageInCollection" xml:space="preserve">
+				<source>Page added to collection</source>
+			<target>crwdns81473:0crwdne81473:0</target></trans-unit>
+      <trans-unit id="showFullPageCollection" xml:space="preserve">
+				<source>Show pagecollection</source>
+			<target>crwdns81475:0crwdne81475:0</target></trans-unit>
+      <trans-unit id="prozess_add" xml:space="preserve">
+				<source>Add page</source>
+			<target>crwdns81477:0crwdne81477:0</target></trans-unit>
+      <trans-unit id="prozess_delete" xml:space="preserve">
+				<source>Delete page</source>
+			<target>crwdns81479:0crwdne81479:0</target></trans-unit>
+      <trans-unit id="prozess_moveup" xml:space="preserve">
+				<source>Move page up</source>
+			<target>crwdns81481:0crwdne81481:0</target></trans-unit>
+      <trans-unit id="prozess_movedown" xml:space="preserve">
+				<source>Move page down</source>
+			<target>crwdns81483:0crwdne81483:0</target></trans-unit>
+      <trans-unit id="clearall" xml:space="preserve">
+				<source>Clear collection</source>
+			<target>crwdns81485:0crwdne81485:0</target></trans-unit>
+    </body>
+  </file>
+</xliff>
