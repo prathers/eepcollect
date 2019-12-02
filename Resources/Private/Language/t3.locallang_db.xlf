@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2015-05-26T12:00:00Z" product-name="eepcollect" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id="tt_content.list_type_pi1" xml:space="preserve">
+				<source>Pagecollector</source>
+			<target>crwdns81491:0crwdne81491:0</target></trans-unit>
+      <trans-unit id="tx_eepcollect_sessions" xml:space="preserve">
+				<source>Collection</source>
+			<target>crwdns81493:0crwdne81493:0</target></trans-unit>
+      <trans-unit id="tx_eepcollect_sessions.ses_id" xml:space="preserve">
+				<source>CookieID/Code</source>
+			<target>crwdns81495:0crwdne81495:0</target></trans-unit>
+      <trans-unit id="tx_eepcollect_sessions.feuser_id" xml:space="preserve">
+				<source>FEUser</source>
+			<target>crwdns81497:0crwdne81497:0</target></trans-unit>
+      <trans-unit id="tx_eepcollect_sessions.feuser_id.0" xml:space="preserve">
+				<source>none</source>
+			<target>crwdns81499:0crwdne81499:0</target></trans-unit>
+      <trans-unit id="tx_eepcollect_sessions.ses_tstamp" xml:space="preserve">
+				<source>Date/Time</source>
+			<target>crwdns81501:0crwdne81501:0</target></trans-unit>
+      <trans-unit id="tx_eepcollect_sessions.ses_data" xml:space="preserve">
+				<source>Data</source>
+			<target>crwdns81503:0crwdne81503:0</target></trans-unit>
+    </body>
+  </file>
+</xliff>
