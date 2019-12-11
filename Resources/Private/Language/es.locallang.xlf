@@ -3,27 +3,63 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2015-05-26T12:00:00Z" product-name="eepcollect" target-language="es-ES">
     <header/>
     <body>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		</body>
+      <trans-unit id="enableyourcookie" xml:space="preserve" approved="yes">
+				<source>Aktivate your cookies!</source>
+			<target state="final">Active sus cookies!</target></trans-unit>
+      <trans-unit id="whatispagecollect" xml:space="preserve" approved="yes">
+				<source>What is 'Pagecollect'?</source>
+			<target state="final">Que es "mi mochila"?</target></trans-unit>
+      <trans-unit id="error_unknown" xml:space="preserve" approved="yes">
+				<source>Any unknown Error occured.</source>
+			<target state="final">Ha ocurrido un error desconocido</target></trans-unit>
+      <trans-unit id="error_nochanges" xml:space="preserve" approved="yes">
+				<source>Pagecollection wasn't updated!</source>
+			<target state="final">Su mochila no fue actualizada!</target></trans-unit>
+      <trans-unit id="error_noviewmode" xml:space="preserve" approved="yes">
+				<source>No view-mode defined for this plugin!</source>
+			<target state="final">No se ha definido vista para esta extensión</target></trans-unit>
+      <trans-unit id="error_oldsession" xml:space="preserve" approved="yes">
+				<source>Pagecollection wasn't updated!</source>
+			<target state="final">Su mochila no fue actualizada!</target></trans-unit>
+      <trans-unit id="success_changes" xml:space="preserve" approved="yes">
+				<source>Pagecollection updated!</source>
+			<target state="final">Su Mochila ha sido Actualizada!</target></trans-unit>
+      <trans-unit id="collectioninfo" xml:space="preserve" approved="yes">
+				<source>%s page(s) collected</source>
+			<target state="final">%s página(s) en su Mochila</target></trans-unit>
+      <trans-unit id="collectioninfo_empty" xml:space="preserve" approved="yes">
+				<source>No pages in collection.</source>
+			<target state="final">No hay páginas en su mochila</target></trans-unit>
+      <trans-unit id="addCurrentPageToCollection" xml:space="preserve" approved="yes">
+				<source>Add this page to collection</source>
+			<target state="final">Agregar a mi mochila</target></trans-unit>
+      <trans-unit id="delCurrentPageToCollection" xml:space="preserve" approved="yes">
+				<source>Delete this page from collection</source>
+			<target state="final">Quitar página de su mochila</target></trans-unit>
+      <trans-unit id="currentPageAddToCollection" xml:space="preserve" approved="yes">
+				<source>Page added to collection</source>
+			<target state="final">Página agregada a su mochila</target></trans-unit>
+      <trans-unit id="currentPageInCollection" xml:space="preserve" approved="yes">
+				<source>Page added to collection</source>
+			<target state="final">Página agregada a su mochila</target></trans-unit>
+      <trans-unit id="showFullPageCollection" xml:space="preserve" approved="yes">
+				<source>Show pagecollection</source>
+			<target state="final">Mostrar páginas en mi mochila</target></trans-unit>
+      <trans-unit id="prozess_add" xml:space="preserve" approved="yes">
+				<source>Add page</source>
+			<target state="final">Agregar página</target></trans-unit>
+      <trans-unit id="prozess_delete" xml:space="preserve" approved="yes">
+				<source>Delete page</source>
+			<target state="final">Borrar página</target></trans-unit>
+      <trans-unit id="prozess_moveup" xml:space="preserve" approved="yes">
+				<source>Move page up</source>
+			<target state="final">Mover página arriba</target></trans-unit>
+      <trans-unit id="prozess_movedown" xml:space="preserve" approved="yes">
+				<source>Move page down</source>
+			<target state="final">Mover página abajo</target></trans-unit>
+      <trans-unit id="clearall" xml:space="preserve" approved="yes">
+				<source>Clear collection</source>
+			<target state="final">Borrar colección</target></trans-unit>
+    </body>
   </file>
 </xliff>
