@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2015-05-26T12:00:00Z" product-name="eepcollect" target-language="da">
+    <header/>
+    <body>
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
+				<source>Page collector database.</source>
+			<target state="final">Sidesamling database.</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
+				<source>Visitors got the possibility to choose some predefined TYPO3 pages for adding them to their own favorit-list like a basket in a shop. Here you can see, add or edit available collections as single sessions.</source>
+			<target state="final">Besøgende har mulighed for at vælge prædefinerede TYPO3-sider og tilføje dem til deres egen favoritliste, som en indkøbskurv i en butik. Her kan du se, tilføje og redigere tilgængelige samlinger som enkel session.</target></trans-unit>
+    </body>
+  </file>
+</xliff>
